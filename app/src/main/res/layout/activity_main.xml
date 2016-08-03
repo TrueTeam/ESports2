@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".main.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clickable="true"/>
+    <RadioGroup
+        android:id="@+id/game_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/btn_games"
+            style="@style/btn_radio"
+            android:checked="true"
+            android:drawableTop="@drawable/game_selector"
+            android:text="@string/games" />
+
+        <RadioButton
+            android:id="@+id/btn_found"
+            style="@style/btn_radio"
+            android:drawableTop="@drawable/found_selector"
+            android:text="@string/found" />
+
+        <RadioButton
+            android:id="@+id/btn_news"
+            style="@style/btn_radio"
+            android:drawableTop="@drawable/news_selector"
+            android:text="@string/news" />
+
+        <RadioButton
+            android:id="@+id/btn_message"
+            style="@style/btn_radio"
+            android:drawableTop="@drawable/message_selector"
+            android:text="@string/message" />
+    </RadioGroup>
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <RadioGroup
+        android:id="@+id/game_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/btn_games"
+            style="@style/btn_radio"
+            android:checked="true"
+            android:drawableTop="@drawable/game_selector"
+            android:text="@string/games" />
+
+        <RadioButton
+            android:id="@+id/btn_found"
+            style="@style/btn_radio"
+            android:drawableTop="@drawable/found_selector"
+            android:text="@string/found" />
+
+        <RadioButton
+            android:id="@+id/btn_news"
+            style="@style/btn_radio"
+            android:drawableTop="@drawable/news_selector"
+            android:text="@string/news" />
+
+        <RadioButton
+            android:id="@+id/btn_message"
+            style="@style/btn_radio"
+            android:drawableTop="@drawable/message_selector"
+            android:text="@string/message" />
+    </RadioGroup>
+
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mypc.esports2.main.MyTeamActivity">
+    <RelativeLayout
+        android:id="@+id/rl_layout_team"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#000">
+        <ImageView
+            android:id="@+id/on_back_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/icon_arrow_left"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#FDD101"
+            android:text="我的战队"/>
+        <ImageView
+            android:id="@+id/tv_add_team"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/add_player"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    <ListView
+        android:id="@+id/lv_team_list"
+        android:layout_below="@id/rl_layout_team"
+        android:layout_above="@+id/btn_add_team"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+    <Button
+        android:id="@+id/btn_add_team"
+        android:text="创建战队"
+        android:textSize="18sp"
+        android:textColor="#fff"
+        android:background="#00BEC3"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.LoginActivity">
+
+    <!--底层-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/login_left"/>
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="#142842"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/login_mid"/>
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="#142842"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/login_right"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativelayout_login"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="#70141d65">
+
+        <ImageView
+            android:id="@+id/iv_login_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/login_log"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativelayout_login">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#70141d65"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:tabIndicatorColor="#00BEC3"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#fff"
+            app:tabTextColor="#ffffff">
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tablayout_login">
+
+        </android.support.v4.view.ViewPager>
+
+    </RelativeLayout>
+
+</RelativeLayout>
