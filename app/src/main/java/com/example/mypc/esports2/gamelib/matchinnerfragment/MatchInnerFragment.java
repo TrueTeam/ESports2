@@ -7,11 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.bean.GamesBean;
 
@@ -24,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MatchInnerFragment extends Fragment implements MatchInnerFragmentContract.View{
+public class MatchInnerFragment extends Fragment implements MatchInnerFragmentContract.View {
     private MatchInnerFragmentContract.Model modle;
     private MatchInnerFragmentContract.Persenter persenter;
     private Handler handle = new Handler();
@@ -32,7 +34,12 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
     private MatchInnerAdapter mPagerAdapter;
     @BindView(R.id.recy_view_inner)
     RecyclerView recyViewInner;
-    private int mPosition;
+    public int mPosition;
+
+    public MatchInnerFragment() {
+
+    }
+
     public MatchInnerFragment(int position) {
         this.mPosition = position;
     }
@@ -44,13 +51,22 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
         View view = inflater.inflate(R.layout.fragment_games_inner, container, false);
         ButterKnife.bind(this, view);
         mList = new ArrayList<>();
-        LinearLayoutManager llm =new LinearLayoutManager(getContext());
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyViewInner.setLayoutManager(llm);
-        mPagerAdapter = new MatchInnerAdapter(R.layout.inner_recyview_layout,mList);
+        mPagerAdapter = new MatchInnerAdapter(R.layout.inner_recyview_layout, mList);
         recyViewInner.setAdapter(mPagerAdapter);
+        mPagerAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                String id = mList.get(i).getId();
+                Log.i("TAG", "onItemClick: "+ id);
+                Toast.makeText(getContext(),"iiiii"+i,Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -75,7 +91,7 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
 
     @Override
     public void onFild(String erro) {
-        Toast.makeText(getContext(),"网络连接错误",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "网络连接错误", Toast.LENGTH_SHORT).show();
     }
 
 }
