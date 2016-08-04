@@ -1,21 +1,17 @@
 package com.example.mypc.esports2.httputils.news;
 
-import com.example.mypc.esports2.bean.NewsAD;
+import com.example.mypc.esports2.bean.Artical;
 
-import java.util.HashMap;
+import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.QueryMap;
-//http://139.196.106.200/api/item/article?p=1&cid=223&ad=1
 
 /**
- * Created by peter on 2016/8/3.
+ * Created by peter on 2016/8/4.
  */
 public interface INewsService {
-    @GET("api/item/article")
-    Call<NewsAD> getMovieList(@QueryMap() HashMap<String, String> params);
+
+    @GET("api/category/article")
+    Call<List<Artical>> getArticalList();
 }

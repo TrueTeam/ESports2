@@ -33,6 +33,7 @@
     <string name="invitation_msg">*每邀请成功一个好友，好友将获得100蟠桃</string>
     <string name="invitation_msg_one">*补充填写你好友的邀请码，只能填写一次!</string>
     <string name="invitation_msg_two">*填写邀请码，您将获得10蟠桃</string>
+    <string name="news_item_title">度娘说标题要长</string>
     <string-array name="spinner_context">
         <item>功能建议</item>
         <item>产品BUG</item>
