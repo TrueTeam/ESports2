@@ -71,7 +71,7 @@ public class GamesBean {
         this.id = id;
     }
 
-    public GamesBean(String id, String title,  String applyStartTime, String applyEndTime,String startTime, String endTime, String matchNature, String matchStatus, String coverLink) {
+    public GamesBean(String id, String title,  String applyStartTime, String applyEndTime,String startTime, String endTime, String matchNature,String matchAddress, String matchStatus, String coverLink) {
         this.id = id;
         this.title = title;
         this.applyStartTime = applyStartTime;
@@ -79,6 +79,7 @@ public class GamesBean {
         this.startTime = startTime;
         this.endTime = endTime;
         this.matchNature = matchNature;
+        this.matchAddress = matchAddress;
         this.matchStatus = matchStatus;
         this.coverLink = coverLink;
     }

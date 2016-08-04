@@ -45,10 +45,11 @@ public class GamesConvertFactory extends Converter.Factory {
                     String start_time = object.getString("start_time");
                     String end_time = object.getString("end_time");
                     String match_nature = object.getString("match_nature");
+                    String match_address = object.optString("match_address");
                     String match_status = object.getString("match_status");
                     String cover_link = object.getString("cover_link");
                     GamesBean gb = new GamesBean(id,title,apply_start_time,apply_end_time,start_time
-                    ,end_time,match_nature,match_status,cover_link);
+                    ,end_time,match_nature,match_address,match_status,cover_link);
                     mList.add(gb);
                 }
             } catch (JSONException e) {

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    android:padding="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_match_address"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@mipmap/match_online" />
+
+            <TextView
+                android:id="@+id/tv_match_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:textSize="10sp"
+                android:layout_toRightOf="@+id/iv_match_address"
+                android:text="不限大区"
+                android:textColor="#999" />
+
+            <TextView
+                android:textSize="10sp"
+                android:id="@+id/tv_match_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="线上赛"
+                android:textColor="#999" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@mipmap/regist_time"/>
+            <TextView
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#999"
+                android:text="报名时间 : "/>
+            <TextView
+                android:textSize="10sp"
+                android:id="@+id/tv_apply_start_time"
+                android:layout_width="wrap_content"
+                android:textColor="#999"
+                android:layout_height="wrap_content"
+                android:text="2016-08-02"/>
+            <TextView
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#999"
+                android:text=" - "/>
+            <TextView
+                android:textSize="10sp"
+                android:id="@+id/tv_apply_end_time"
+                android:layout_width="wrap_content"
+                android:textColor="#999"
+                android:layout_height="wrap_content"
+                android:text="2016-08-02"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@mipmap/match_time"/>
+
+            <TextView
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#999"
+                android:text="活动时间 : "/>
+            <TextView
+                android:textSize="10sp"
+                android:id="@+id/tv_match_start_time"
+                android:layout_width="wrap_content"
+                android:textColor="#999"
+                android:layout_height="wrap_content"
+                android:text="2016-08-02"/>
+            <TextView
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#999"
+                android:text=" - "/>
+            <TextView
+                android:textSize="10sp"
+                android:id="@+id/tv_end_time"
+                android:layout_width="wrap_content"
+                android:textColor="#999"
+                android:layout_height="wrap_content"
+                android:text="2016-08-02"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
