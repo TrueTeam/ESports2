@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <ImageView
-
+        android:id="@+id/iv_head_image"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:scaleType="fitXY"
@@ -17,7 +17,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <TextView
-
+        android:id="@+id/tv_include_tile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -74,25 +74,30 @@
         android:textColor="#FB8C00"
         android:text="冠军128元,亚军60,第3-第4名30元,随机奖6名15元"/>
     <TextView
+        android:id="@+id/tv_include_intro"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="活动发起：阡陌丶云#5343报名时间：8月1日15:00-8月6日11:30比赛时间：8月6日12:00（周六中午）比赛规则：（重点）1）第一次报名需绑定炉石角色，填写完整的炉石角色名称包含了后面的#"/>
     <TextView
+        android:id="@+id/tv_include_more"
         android:layout_margin="10dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:textColor="#1CC5CA"
         android:text="查看赛事详情"/>
 </LinearLayout>
     <android.support.v7.widget.RecyclerView
+        android:background="@color/cardview_light_background"
+        android:id="@+id/rv_include_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="400dp">
     </android.support.v7.widget.RecyclerView>
 
     <TextView
+        android:id="@+id/tv_sign_count"
         android:padding="5dp"
         android:background="@color/cardview_light_background"
         android:layout_width="match_parent"
@@ -100,6 +105,8 @@
         android:gravity="center"
         android:textColor="#999"
         android:text="xx人正在参与"/>
+
+
     <LinearLayout
         android:background="@color/cardview_light_background"
         android:layout_width="match_parent"
@@ -132,7 +139,9 @@
 
     </LinearLayout>
     <TextView
+        android:id="@+id/tv_show_image"
         android:padding="5dp"
+        android:background="@color/cardview_light_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

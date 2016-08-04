@@ -1,7 +1,7 @@
 package com.example.mypc.esports2.gamelib.matchinnerfragment;
 
 import com.example.mypc.esports2.bean.GamesBean;
-import com.example.mypc.esports2.httputils.GamesHttpHelper;
+import com.example.mypc.esports2.httputils.games.GamesHttpHelper;
 
 import java.util.HashMap;
 import java.util.List;
