@@ -1,15 +1,17 @@
 package com.example.mypc.esports2.main.news.newsinner;
 
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.mypc.esports2.bean.AdBean;
+import com.example.mypc.esports2.main.news.NewsDetailActivity;
 
 import java.util.List;
+import java.util.zip.Inflater;
 
 /**
  * Created by peter on 2016/8/4.
@@ -34,11 +36,19 @@ public class NewsInnerViewpagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(final ViewGroup container, final int position) {
         ImageView iv = new ImageView(container.getContext());
-        Log.e("TAG", "instantiateItem: " + list.size());
         Glide.with(container.getContext()).load(list.get(position % list.size()).getCoverLink()).into(iv);
         container.addView(iv);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdBean adBean = list.get(position % list.size());
+                Intent intent = new Intent(container.getContext(), NewsDetailActivity.class);
+                intent.putExtra("adbean",adBean);
+                container.getContext().startActivity(intent);
+            }
+        });
         return iv;
     }
 

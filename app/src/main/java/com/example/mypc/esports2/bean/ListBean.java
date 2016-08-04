@@ -2,7 +2,9 @@ package com.example.mypc.esports2.bean;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ListBean {
+import java.io.Serializable;
+
+public class ListBean implements Serializable {
     @SerializedName("id")
     private String id;
     @SerializedName("click")
