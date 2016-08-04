@@ -1,6 +1,7 @@
 package com.example.mypc.esports2.httputils;
 
 import com.example.mypc.esports2.bean.GamesBean;
+import com.example.mypc.esports2.bean.MatchDetailsBean;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,10 @@ public interface IGamesService {
             , @QueryMap()HashMap<String,String> params);
     @POST("api/{ccc}")
     Call<List<GamesBean>> getGames(@Path("ccc")String path
+            , @QueryMap()HashMap<String,String> params);
+
+    @GET("api/match/{aaa}")
+    Call<MatchDetailsBean> getMatchDetailsBean(@Path("aaa")String path
             , @QueryMap()HashMap<String,String> params);
 
 }

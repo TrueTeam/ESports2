@@ -1,6 +1,7 @@
-package com.example.mypc.esports2.httputils;
+package com.example.mypc.esports2.httputils.games;
 
 import com.example.mypc.esports2.config.UrlConfig;
+import com.example.mypc.esports2.httputils.IGamesService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

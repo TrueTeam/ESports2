@@ -1,13 +1,13 @@
 package com.example.mypc.esports2.gamelib.matchinnerfragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.bean.GamesBean;
+import com.example.mypc.esports2.main.matchdetails.MatchDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +61,9 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
             @Override
             public void onItemClick(View view, int i) {
                 String id = mList.get(i).getId();
-                Log.i("TAG", "onItemClick: "+ id);
-                Toast.makeText(getContext(),"iiiii"+i,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), MatchDetailsActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
         return view;

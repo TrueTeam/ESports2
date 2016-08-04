@@ -1,4 +1,4 @@
-package com.example.mypc.esports2.httputils;
+package com.example.mypc.esports2.httputils.games;
 
 import com.example.mypc.esports2.bean.GamesBean;
 
