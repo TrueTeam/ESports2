@@ -35,7 +35,7 @@ import butterknife.ButterKnife;
 /**
  * Created by peter on 2016/8/4.
  */
-public class NewsInnerFragment extends Fragment implements NewsInnerContract.View, View.OnClickListener {
+public class NewsInnerFragment extends Fragment implements NewsInnerContract.View {
 
 
     @BindView(R.id.viewpager_inner_news)
@@ -134,7 +134,6 @@ public class NewsInnerFragment extends Fragment implements NewsInnerContract.Vie
         recyclerviewInnerNews.setAdapter(adapter);
 
         onPagechangelistener(ad);
-        viewpagerInnerNews.setOnClickListener(this);
         adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
@@ -168,11 +167,6 @@ public class NewsInnerFragment extends Fragment implements NewsInnerContract.Vie
     @Override
     public void onFail(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onClick(View v) {
-        // TODO: 2016/8/5 点击事件的实现
     }
 
 
