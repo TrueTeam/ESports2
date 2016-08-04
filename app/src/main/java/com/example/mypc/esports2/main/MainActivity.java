@@ -8,9 +8,9 @@ import android.widget.RadioButton;
 
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
-import com.example.mypc.esports2.fragment.NewsFragment;
 import com.example.mypc.esports2.fragment.UnLoginFragment;
 import com.example.mypc.esports2.gamelib.MyGamesFragment;
+import com.example.mypc.esports2.main.news.NewsFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
