@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    tools:context="com.example.mypc.esports.ui.TuCaoActivity">
+    tools:context="com.example.mypc.esports2.main.TuCaoActivity">
     <RelativeLayout
         android:id="@+id/rl_tucao"
         android:padding="15dp"
@@ -13,10 +13,10 @@
         android:background="#000">
         <ImageView
             android:id="@+id/on_back_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
             android:src="@mipmap/icon_arrow_left"
             />
         <TextView

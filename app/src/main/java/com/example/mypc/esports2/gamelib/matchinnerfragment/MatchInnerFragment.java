@@ -7,11 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.bean.GamesBean;
 
@@ -54,6 +56,14 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
         recyViewInner.setLayoutManager(llm);
         mPagerAdapter = new MatchInnerAdapter(R.layout.inner_recyview_layout, mList);
         recyViewInner.setAdapter(mPagerAdapter);
+        mPagerAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                String id = mList.get(i).getId();
+                Log.i("TAG", "onItemClick: "+ id);
+                Toast.makeText(getContext(),"iiiii"+i,Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 

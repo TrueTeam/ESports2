@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e5e5e5"
+    android:orientation="vertical">
+
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/recyad" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:background="@color/cardview_light_background"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="#悟空水友-卡拉赞之夜#切磋赛"
+        android:textColor="#000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/single_person_match"
+        android:gravity="center"
+        android:text="个人赛"
+        android:textColor="@color/cardview_light_background" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="140dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:background="#EFEFF0" />
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/rewards" />
+
+        <View
+            android:layout_width="140dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:background="#EFEFF0" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_horizontal"
+        android:textColor="#FB8C00"
+        android:text="冠军128元,亚军60,第3-第4名30元,随机奖6名15元"/>
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="活动发起：阡陌丶云#5343报名时间：8月1日15:00-8月6日11:30比赛时间：8月6日12:00（周六中午）比赛规则：（重点）1）第一次报名需绑定炉石角色，填写完整的炉石角色名称包含了后面的#"/>
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#1CC5CA"
+        android:text="查看赛事详情"/>
+</LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:padding="5dp"
+        android:background="@color/cardview_light_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#999"
+        android:text="xx人正在参与"/>
+    <LinearLayout
+        android:background="@color/cardview_light_background"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="140dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:background="#999" />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="热门截图"
+            android:textColor="#999" />
+
+        <View
+            android:layout_width="140dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:background="#999" />
+
+
+    </LinearLayout>
+    <TextView
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#1CC5CA"
+        android:text="查看全部截图"/>
+</LinearLayout>

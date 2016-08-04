@@ -63,8 +63,8 @@ public class MatchInnerAdapter extends BaseQuickAdapter<GamesBean> {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         long time1 = date.getTime();
-        long l = time1 -Long.parseLong(time) ;
-        return  format.format(new Date(Long.parseLong(time)));
+        long l = time1 +Long.parseLong(time)/2 ;
+        return  format.format(new Date(l));
     }
 
     private void setMatchNature(String nature,BaseViewHolder baseViewHolder) {
