@@ -6,4 +6,6 @@
     <color name="gamesTextColor">#ffffff</color>
     <color name="gamesTextColorselect">#FDD101</color>
     <color name="gamesbacklound">#000000</color>
+    <color name="findSelector">#FF0</color>
+    <color name="findNoSelector">#000</color>
 </resources>

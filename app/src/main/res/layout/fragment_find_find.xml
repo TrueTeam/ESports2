@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="180dp"
+            android:src="@mipmap/img1"
+            android:scaleType="centerCrop"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="本期话题"
+                android:textColor="#999" />
+
+            <TextView
+                android:id="@+id/find_topic_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/games_more"
+                android:textColor="#0ff" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="vertical"
+            android:background="#000">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@mipmap/headfind"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/omg"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/vg"/>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageview"
+                    android:layout_centerInParent="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/vgwin"/>
+                <TextView
+                    android:layout_toLeftOf="@+id/imageview"
+                    android:layout_centerVertical="true"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:background="#f00"/>
+                <TextView
+                    android:layout_toRightOf="@+id/imageview"
+                    android:layout_centerVertical="true"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:background="#0ff"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                >
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="33              8"
+                   android:gravity="center"
+                   android:textColor="#999"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="3dp"
+            android:text="话题简介"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="30dp"
+            android:padding="2dp"
+            android:text="2016年LPL职业联赛夏季赛第十周于8月4日19点将迎来OMG对战VG，具体玩法点击下方了解↓↓↓↓↓↓↓"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="热门圈子"
+                android:textColor="#999" />
+
+            <TextView
+                android:id="@+id/find_circle_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/games_more"
+                android:textColor="#0ff" />
+        </LinearLayout>
+        <GridView
+            android:id="@+id/gridView_circle_find"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:numColumns="2"
+            android:stretchMode="columnWidth"
+            android:columnWidth="80dp"
+            android:paddingBottom="10dp">
+
+        </GridView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="热门帖子"
+                android:textColor="#999" />
+
+            <TextView
+                android:id="@+id/find_post_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/games_more"
+                android:textColor="#0ff" />
+        </LinearLayout>
+        <GridView
+            android:id="@+id/gridView_post_find"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
+            android:numColumns="2"
+            android:stretchMode="columnWidth"
+            android:columnWidth="80dp"
+            android:paddingBottom="10dp">
+        </GridView>
+    </LinearLayout>
+</ScrollView>

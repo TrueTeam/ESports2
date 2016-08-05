@@ -9,6 +9,7 @@ import android.widget.RadioButton;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.fragment.UnLoginFragment;
+import com.example.mypc.esports2.fragment.findFragmentt.FindFragment;
 import com.example.mypc.esports2.gamelib.MyGamesFragment;
 import com.example.mypc.esports2.main.news.NewsFragment;
 
@@ -34,6 +35,7 @@ public class MainActivity extends BaseActivity {
     private NewsFragment newsFragment;
     private UnLoginFragment unLoginFragment;
     private FragmentManager manager;
+    private FindFragment findFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,20 +50,24 @@ public class MainActivity extends BaseActivity {
         myGamesFragment = new MyGamesFragment(FLAG);
         newsFragment = new NewsFragment();
         unLoginFragment = new UnLoginFragment();
+        findFragment=new FindFragment();
         transaction.add(R.id.fl_layout, myGamesFragment);
         transaction.add(R.id.fl_layout, newsFragment);
         transaction.add(R.id.fl_layout, unLoginFragment);
+        transaction.add(R.id.fl_layout, findFragment);
+
         transaction.commit();
     }
 
     public void selectFragment(int position) {
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.hide(myGamesFragment).hide(newsFragment).hide(unLoginFragment);
+        transaction.hide(myGamesFragment).hide(newsFragment).hide(unLoginFragment).hide(findFragment);
         switch (position) {
             case SELECTED_GAME:
                 transaction.show(myGamesFragment);
                 break;
             case SELECTED_FOUND:
+                transaction.show(findFragment);
                 break;
             case SELECTED_NEWS:
                 transaction.show(newsFragment);
@@ -88,6 +94,7 @@ public class MainActivity extends BaseActivity {
 
                 break;
             case R.id.btn_found:
+                selectFragment(SELECTED_FOUND);
                 break;
             case R.id.btn_news:
                 selectFragment(SELECTED_NEWS);

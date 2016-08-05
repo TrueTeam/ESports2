@@ -16,6 +16,15 @@ public class UrlConfig {
         public static final String GAME_ID = "game_id";
         public static final String PAGE = "p";
         public static final String MATCH_ID = "match_id";
+        public static final String ROW = "row";
+        public static final String ORDERTYPE = "ordertype";
+        public static final String ISHOT = "ishot";
 
+    }
+    public static class MiddlePath{
+        public static final String MIDDLE="Circle/lists";
+    }
+    public static class PostPath{
+        public static final String POST="Circle/postlists";
     }
 }

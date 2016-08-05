@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="100dp"
+    android:layout_height="100dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:src="@mipmap/omg"
+        android:scaleType="center"
+        android:id="@+id/imageView_bigmap" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/moren_header"
+        android:id="@+id/imageView_ican"
+        android:layout_above="@+id/textview_content"
+        android:layout_toLeftOf="@+id/textview_content"
+        android:layout_toStartOf="@+id/textview_content" />
+    <TextView
+        android:id="@+id/textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="悟空电竞官方号"
+        android:textSize="10sp"
+        android:textColor="#000"
+        android:layout_below="@+id/imageView_bigmap"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
+    <TextView
+        android:id="@+id/textview_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:text="最强阵容游戏规则说明"
+        android:textSize="10sp"
+        android:textColor="#999"
+        android:layout_below="@+id/textview_title"
+        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#999"
+        android:padding="5dp"
+        android:layout_below="@+id/textview_content"
+        >
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/xin"/>
+        <TextView
+            android:id="@+id/textview_people"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="人数"/>
+        <ImageView
+            android:layout_marginLeft="40dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/zan"/>
+        <TextView
+            android:id="@+id/textview_like"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="10"/>
+    </LinearLayout>
+</RelativeLayout>

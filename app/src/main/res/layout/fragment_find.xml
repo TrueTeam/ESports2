@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <RadioGroup
+        android:id="@+id/radiogroup_find"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#000"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/radiobutton_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发现"
+            android:button="@null"
+
+            android:paddingLeft="30dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:background="@drawable/find_selector"
+            android:textColor="#999"/>
+        <RadioButton
+            android:id="@+id/radiobutton_focus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关注"
+            android:button="@null"
+            android:background="@drawable/find_selector"
+            android:paddingRight="30dp"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:paddingLeft="10dp"
+            android:textColor="#999"/>
+        <!--android:background="@drawable/find_shape__right"-->
+    </RadioGroup>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_find"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+</LinearLayout>
