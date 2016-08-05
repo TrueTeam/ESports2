@@ -49,9 +49,11 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iv_person_details"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="20dp"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/ic_launcher" />
             </LinearLayout>
 
@@ -63,12 +65,14 @@
                 android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/tv_person_details_fllow"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="关注 : 10" />
 
                 <TextView
+                    android:id="@+id/tv_person_details_fen"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -89,12 +93,15 @@
                     android:text="Ta的标签" />
 
                 <ImageView
+                    android:id="@+id/iv_target_one"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="40dp"
                     android:src="@mipmap/ic_launcher" />
 
                 <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/iv_target_two"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginLeft="5dp"
@@ -111,11 +118,13 @@
                 android:paddingTop="20dp">
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="悟空ID" />
 
                 <TextView
+                    android:id="@+id/tv_person_details_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
@@ -126,7 +135,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#e5e5e5" />
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:paddingTop="20dp"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="他的游戏"/>
+                <TextView
+                    android:id="@+id/tv_person_game_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:text="啊,噢,嗯!" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,6 +169,7 @@
                     android:text="签名" />
 
                 <TextView
+                    android:id="@+id/tv_person_details_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="63dp"
@@ -190,6 +218,7 @@
                         android:background="#EFEFF0" />
 
                     <TextView
+                        android:id="@+id/tv_watch_more"
                         android:layout_width="wrap_content"
                         android:textColor="#00BEC3"
                         android:layout_height="wrap_content"
@@ -216,12 +245,13 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_call_other"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00BEC3"
             android:text="打招呼"
-            android:textColor="@color/btncolor_change"
+            android:textColor="@color/cardview_light_background"
             android:textSize="16sp" />
 
         <ImageView
@@ -231,12 +261,13 @@
             android:src="@drawable/btn_guanzhu_line" />
 
         <Button
+            android:id="@+id/btn_fllow"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00BEC3"
             android:text="关注"
-            android:textColor="@color/btncolor_change"
+            android:textColor="@color/cardview_light_background"
             android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

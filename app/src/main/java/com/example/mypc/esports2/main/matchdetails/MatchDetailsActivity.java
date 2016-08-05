@@ -22,6 +22,7 @@ import com.example.mypc.esports2.bean.MatchDetailsBean;
 import com.example.mypc.esports2.main.GamesDetailsActivity;
 import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -55,12 +56,14 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
     private String content;
     private GamesDetailsAdapter adapter;
     private List<MatchDetailsBean.SignListsBean> signLists;
+    private List<MatchDetailsBean.SignListsBean> mList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         model = new MatchDetailsModel();
         persenter = new MatchDetailsPersenter(this, model);
+
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
         persenter.getDate(id);
@@ -78,13 +81,24 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
     public void onSuccess(MatchDetailsBean mdb) {
         if (mdb != null) {
             final String coverLink = mdb.getCoverLink();
+            mList = new ArrayList<>();
+
             signLists = mdb.getSignLists();
-            final String prize = mdb.getPrize();
+            if (signLists.size() > 41) {
+                for (int i = 0; i < 41; i++) {
+                    mList.add(signLists.get(i));
+                }
+            }else{
+                mList.addAll(signLists);
+            }
+
+            mList.add(new MatchDetailsBean.SignListsBean("10","halou","R.mipmap.icon_mao"));
             StaggeredGridLayoutManager sgm = new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL);
             rvIncludeView.setLayoutManager(sgm);
-            adapter = new GamesDetailsAdapter(R.layout.rv_details_adapter, signLists);
+            adapter = new GamesDetailsAdapter(R.layout.rv_details_adapter, mList);
             rvIncludeView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
+            final String prize = mdb.getPrize();
             content = mdb.getContent();
             final String title = mdb.getTitle();
             final String intro = mdb.getIntro();
@@ -100,15 +114,20 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                     Glide.with(MatchDetailsActivity.this)
                             .load(coverLink)
                             .into(ivHeadImage);
+
+
                 }
             });
-            final String id = mdb.getId();
+
+
             adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(View view, int i) {
                     Intent intent = new Intent(MatchDetailsActivity.this, PersonDetailsActivity.class);
-                    intent.putExtra("id",id);
+                    intent.putExtra("id", signLists.get(i).getId());
                     startActivity(intent);
+
+                    //// TODO: 2016/8/6 明日实现新窗口头像和人名的显示
                 }
             });
         }
