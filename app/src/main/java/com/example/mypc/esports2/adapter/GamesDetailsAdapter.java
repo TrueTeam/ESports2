@@ -22,11 +22,7 @@ public class GamesDetailsAdapter extends BaseQuickAdapter<MatchDetailsBean.SignL
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, MatchDetailsBean.SignListsBean signListsBean) {
-//        for (int i = 0; i < signListsBeen.size(); i++) {
-//            Glide.with(baseViewHolder.convertView.getContext())
-//                    .load(signListsBeen.get(i).getHeadLink())
-//                    .into((ImageView) baseViewHolder.getView(R.id.iv_circe_view));
-//        }
+
         Glide.with(baseViewHolder.convertView.getContext())
                     .load(signListsBean.getHeadLink())
                     .into((ImageView) baseViewHolder.getView(R.id.iv_circe_view));

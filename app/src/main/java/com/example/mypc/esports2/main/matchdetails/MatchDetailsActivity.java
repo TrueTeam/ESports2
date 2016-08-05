@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,11 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.adapter.GamesDetailsAdapter;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.bean.MatchDetailsBean;
 import com.example.mypc.esports2.main.GamesDetailsActivity;
+import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
 
 import java.util.List;
 
@@ -44,6 +47,8 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
     Button btnEntered;
     @BindView(R.id.rv_include_view)
     RecyclerView rvIncludeView;
+    @BindView(R.id.tv_web_p)
+    TextView tvWebP;
     private MatchDetailsContract.Model model;
     private MatchDetailsContract.Persenter persenter;
     private Handler handler = new Handler();
@@ -74,9 +79,10 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
         if (mdb != null) {
             final String coverLink = mdb.getCoverLink();
             signLists = mdb.getSignLists();
-            StaggeredGridLayoutManager sgm = new StaggeredGridLayoutManager(7,StaggeredGridLayoutManager.VERTICAL);
+            final String prize = mdb.getPrize();
+            StaggeredGridLayoutManager sgm = new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL);
             rvIncludeView.setLayoutManager(sgm);
-            adapter = new GamesDetailsAdapter(R.layout.rv_details_adapter,signLists);
+            adapter = new GamesDetailsAdapter(R.layout.rv_details_adapter, signLists);
             rvIncludeView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             content = mdb.getContent();
@@ -90,9 +96,19 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                     tvIncludeTile.setText(title);
                     tvIncludeIntro.setText(intro);
                     tvSignCount.setText(signCount + "人在参与");
+                    tvWebP.setText(Html.fromHtml(prize));
                     Glide.with(MatchDetailsActivity.this)
                             .load(coverLink)
                             .into(ivHeadImage);
+                }
+            });
+            final String id = mdb.getId();
+            adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+                @Override
+                public void onItemClick(View view, int i) {
+                    Intent intent = new Intent(MatchDetailsActivity.this, PersonDetailsActivity.class);
+                    intent.putExtra("id",id);
+                    startActivity(intent);
                 }
             });
         }
@@ -102,7 +118,6 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
     public void onFild(String msg) {
         Toast.makeText(this, "网络连接错误", Toast.LENGTH_SHORT).show();
     }
-
 
     @OnClick({R.id.on_back_image, R.id.tv_include_more})
     public void onClick(View view) {

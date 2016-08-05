@@ -25,7 +25,7 @@ import com.example.mypc.esports2.main.MyReplyActivity;
 import com.example.mypc.esports2.main.MyTeamActivity;
 import com.example.mypc.esports2.main.SettingActivity;
 import com.example.mypc.esports2.main.TuCaoActivity;
-import com.example.mypc.esports2.main.matchdetails.MatchDetailsActivity;
+import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -115,7 +115,7 @@ public class MyGamesFragment extends Fragment {
             case R.id.head_image_pic:
                 if (MFLAG){
                     Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getContext(), MatchDetailsActivity.class));
+                    startActivity(new Intent(getContext(), PersonDetailsActivity.class));
                 }else{
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }

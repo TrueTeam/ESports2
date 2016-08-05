@@ -1,9 +1,7 @@
 package com.example.mypc.esports2.main.matchdetails;
 
 import com.example.mypc.esports2.bean.MatchDetailsBean;
-
 import java.util.HashMap;
-
 import retrofit2.Callback;
 
 /**

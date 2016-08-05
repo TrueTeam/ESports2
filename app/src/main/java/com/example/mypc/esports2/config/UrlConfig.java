@@ -14,6 +14,7 @@ public class UrlConfig {
     }
     public static class KEY {
         public static final String GAME_ID = "game_id";
+        public static final String UID = "uid";
         public static final String PAGE = "p";
         public static final String MATCH_ID = "match_id";
         public static final String ROW = "row";
