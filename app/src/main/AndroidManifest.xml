@@ -30,9 +30,10 @@
         <activity android:name=".main.InvitationActivity" />
         <activity android:name=".main.TuCaoActivity" />
         <activity android:name=".main.MyTeamActivity" />
-        <activity android:name=".main.news.NewsDetailActivity"/>
+        <activity android:name=".main.news.NewsDetailActivity" />
         <activity android:name=".main.matchdetails.MatchDetailsActivity" />
-        <activity android:name=".main.GamesDetailsActivity"></activity>
+        <activity android:name=".main.GamesDetailsActivity" />
+        <activity android:name=".main.persondetails.PersonDetailsActivity"></activity>
     </application>
 
 </manifest>

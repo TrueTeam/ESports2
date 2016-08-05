@@ -118,9 +118,10 @@ public class MatchDetailsBean {
     private List<SignListsBean> signLists;
     public MatchDetailsBean(){}
 
-    public MatchDetailsBean(String id, String title, String content, String gameId, String playId, String limit, List<SignListsBean> signLists, String signCount, String intro, String model, String coverLink) {
+    public MatchDetailsBean(String id, String title,String prize, String content, String gameId, String playId, String limit, List<SignListsBean> signLists, String signCount, String intro, String model, String coverLink) {
         this.id = id;
         this.title = title;
+        this.prize = prize;
         this.content = content;
         this.gameId = gameId;
         this.playId = playId;
