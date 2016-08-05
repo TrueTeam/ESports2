@@ -3,11 +3,10 @@ package com.example.mypc.esports2.main.news.newsinner;
 import com.example.mypc.esports2.base.IBaseModel;
 import com.example.mypc.esports2.base.IBasePersenter;
 import com.example.mypc.esports2.base.IBaseView;
-import com.example.mypc.esports2.bean.ListBean;
-import com.example.mypc.esports2.bean.NewsAD;
+import com.example.mypc.esports2.bean.NewsBean;
+import com.example.mypc.esports2.bean.NewsDetailBean;
 
 import java.util.HashMap;
-import java.util.List;
 
 import retrofit2.Callback;
 
@@ -17,16 +16,15 @@ import retrofit2.Callback;
  */
 public class NewsInnerContract {
     public interface View extends IBaseView {
-        void onSuccess(NewsAD newsAD);
-
-        void onFail(String msg);
+        void onGetNewsbeanSuccess(NewsBean newsBean);
+        void onGetNewsbeanFail(String msg);
     }
 
     public interface Mode extends IBaseModel {
-        void getData(HashMap<String, String> params, Callback<NewsAD> callback);
+        void getNewseanData(HashMap<String, String> params, Callback<NewsBean> callback);
     }
 
     public interface Presenter extends IBasePersenter {
-        void getData(String id);
+        void getNewsbeanData(String id);
     }
 }

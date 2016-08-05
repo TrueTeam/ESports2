@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by peter on 2016/8/2.
  */
-public class NewsAD {
+public class NewsBean {
 
     /**
      * id : 2742
@@ -41,7 +41,7 @@ public class NewsAD {
     @SerializedName("list")
     private List<ListBean> list;
 
-    public NewsAD(List<AdBean> ad, List<ListBean> list) {
+    public NewsBean(List<AdBean> ad, List<ListBean> list) {
         this.ad = ad;
         this.list = list;
     }

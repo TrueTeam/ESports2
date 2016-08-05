@@ -8,10 +8,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.mypc.esports2.bean.AdBean;
-import com.example.mypc.esports2.main.news.NewsDetailActivity;
+import com.example.mypc.esports2.main.news.newsdetail.NewsDetailActivity;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by peter on 2016/8/4.

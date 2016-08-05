@@ -2,7 +2,7 @@ package com.example.mypc.esports2.httputils.news.newsinner;
 
 import com.example.mypc.esports2.bean.AdBean;
 import com.example.mypc.esports2.bean.ListBean;
-import com.example.mypc.esports2.bean.NewsAD;
+import com.example.mypc.esports2.bean.NewsBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,13 +34,13 @@ public class NewsInnerConvertFactory extends Converter.Factory {
         return super.requestBodyConverter(type, parameterAnnotations, methodAnnotations, retrofit);
     }
 
-    public class NewsInnerConvert implements Converter<ResponseBody, NewsAD> {
+    public class NewsInnerConvert implements Converter<ResponseBody, NewsBean> {
 
         @Override
-        public NewsAD convert(ResponseBody value) throws IOException {
+        public NewsBean convert(ResponseBody value) throws IOException {
             String result = value.string();
-            NewsAD newsAD = getNewsAD(result);
-            return newsAD;
+            NewsBean newsBean = getNewsAD(result);
+            return newsBean;
         }
 
         /**
@@ -51,7 +51,7 @@ public class NewsInnerConvertFactory extends Converter.Factory {
          * cover_link: "http://139.196.106.200/Uploads/Picture/2016-07-30/579bff22ed537.jpg
          */
 
-        private NewsAD getNewsAD(String result) {
+        private NewsBean getNewsAD(String result) {
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArray = jsonObject.getJSONArray("ad");
@@ -109,8 +109,8 @@ public class NewsInnerConvertFactory extends Converter.Factory {
                     detailList.add(detail);
                 }
 
-                NewsAD newsAD = new NewsAD(adlist, detailList);
-                return newsAD;
+                NewsBean newsBean = new NewsBean(adlist, detailList);
+                return newsBean;
             } catch (JSONException e) {
                 e.printStackTrace();
             }

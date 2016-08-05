@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by peter on 2016/8/4.
  */
-public class Artical {
+public class ArticalBean {
 
     /**
      * id : 223
@@ -27,7 +27,7 @@ public class Artical {
     @SerializedName("has_service")
     private String hasService;
 
-    public Artical(String id, String title, String modelAlias, String modelTitle, String hasService) {
+    public ArticalBean(String id, String title, String modelAlias, String modelTitle, String hasService) {
         this.id = id;
         this.title = title;
         this.modelAlias = modelAlias;

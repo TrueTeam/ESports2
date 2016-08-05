@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mypc.esports2.R;
-import com.example.mypc.esports2.bean.Artical;
+import com.example.mypc.esports2.bean.ArticalBean;
 import com.example.mypc.esports2.main.news.newsinner.NewsInnerFragment;
 
 import java.util.ArrayList;
@@ -50,12 +50,12 @@ public class NewsFragment extends Fragment implements NewsContract.View {
     }
 
     @Override
-    public void onSuccess(List<Artical> list) {
-        for (Artical artical : list) {
-            String title = artical.getTitle();
+    public void onSuccess(List<ArticalBean> list) {
+        for (ArticalBean articalBean : list) {
+            String title = articalBean.getTitle();
             titlelist.add(title);
             NewsInnerFragment newsInnerFragment = new NewsInnerFragment();
-            newsInnerFragment.setArtical(artical);
+            newsInnerFragment.setArticalBean(articalBean);
             fragments.add(newsInnerFragment);
             adapter.notifyDataSetChanged();
         }

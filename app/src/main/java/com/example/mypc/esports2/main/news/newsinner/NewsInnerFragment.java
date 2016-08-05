@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,13 +19,12 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.bean.AdBean;
-import com.example.mypc.esports2.bean.Artical;
+import com.example.mypc.esports2.bean.ArticalBean;
 import com.example.mypc.esports2.bean.ListBean;
-import com.example.mypc.esports2.bean.NewsAD;
-import com.example.mypc.esports2.main.news.NewsDetailActivity;
-import com.example.mypc.esports2.main.news.NewsViewpagerAdapter;
+import com.example.mypc.esports2.bean.NewsBean;
+import com.example.mypc.esports2.bean.NewsDetailBean;
+import com.example.mypc.esports2.main.news.newsdetail.NewsDetailActivity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -51,7 +49,7 @@ public class NewsInnerFragment extends Fragment implements NewsInnerContract.Vie
     private NewsInnerRecycleviewAdapter adapter;
     private NewsInnerViewpagerAdapter viewpagerAdapter;
     private LinearLayoutManager manager;
-    private Artical artical;
+    private ArticalBean articalBean;
 
     private Handler handler = new Handler() {
         @Override
@@ -74,65 +72,62 @@ public class NewsInnerFragment extends Fragment implements NewsInnerContract.Vie
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerviewInnerNews.setLayoutManager(manager);
-        presenter.getData(getArtical().getId());
+        presenter.getNewsbeanData(getArticalBean().getId());
 
         //开始线程任务
         final AutoRunTask autoTask = new AutoRunTask();
         autoTask.startRun();
 
         //处理ViewPager的触摸事件
-        viewpagerInnerNews.setOnTouchListener(new View.OnTouchListener()
+        viewpagerInnerNews.setOnTouchListener(new View.OnTouchListener() {
+            //当触摸屏幕的时候调用
+            //MotionEvent:手指触摸到屏幕的时候,所触发的一系列的事件.
+            //down,up,move,cancle.
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //当手指触摸到ViewPager的时候,ViewPager的自动跳转会停止;
+                //如果手指没有触摸ViewPager,ViewPager的自动跳转又会开始.
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN://第一个被执行的事件
+                        autoTask.stopRun();
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        autoTask.startRun();
+                        break;
+                }
 
-                                              {
-                                                  //当触摸屏幕的时候调用
-                                                  //MotionEvent:手指触摸到屏幕的时候,所触发的一系列的事件.
-                                                  //down,up,move,cancle.
-                                                  @Override
-                                                  public boolean onTouch(View v, MotionEvent event) {
-                                                      //当手指触摸到ViewPager的时候,ViewPager的自动跳转会停止;
-                                                      //如果手指没有触摸ViewPager,ViewPager的自动跳转又会开始.
-                                                      switch (event.getAction()) {
-                                                          case MotionEvent.ACTION_DOWN://第一个被执行的事件
-                                                              autoTask.stopRun();
-                                                              break;
-                                                          case MotionEvent.ACTION_CANCEL:
-                                                          case MotionEvent.ACTION_UP:
-                                                              autoTask.startRun();
-                                                              break;
-                                                      }
-
-                                                      //此处只能返回false
-                                                      return false;
-                                                  }
-                                              }
-
-        );
+                //此处只能返回false
+                return false;
+            }
+        });
 
         return view;
     }
 
-    public Artical getArtical() {
-        return artical;
+    public ArticalBean getArticalBean() {
+        return articalBean;
     }
 
-    public NewsInnerFragment setArtical(Artical artical) {
-        this.artical = artical;
+    public NewsInnerFragment setArticalBean(ArticalBean articalBean) {
+        this.articalBean = articalBean;
         return this;
     }
 
     @Override
-    public void onSuccess(final NewsAD newsAD) {
-        final List<AdBean> ad = newsAD.getAd();
+    public void onGetNewsbeanSuccess(final NewsBean newsBean) {
+        final List<AdBean> ad = newsBean.getAd();
         viewpagerAdapter = new NewsInnerViewpagerAdapter(ad);
         viewpagerInnerNews.setAdapter(viewpagerAdapter);
 
         tvViewpagerTitle.setText(ad.get(0).getTitle());
         viewpagerInnerNews.setCurrentItem(100 * ad.size());
 
-        final List<ListBean> list = newsAD.getList();
+        final List<ListBean> list = newsBean.getList();
         adapter = new NewsInnerRecycleviewAdapter(R.layout.news_inner_listitem, list);
         recyclerviewInnerNews.setAdapter(adapter);
 
+        //点击事件的监听
         onPagechangelistener(ad);
         adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
@@ -165,7 +160,7 @@ public class NewsInnerFragment extends Fragment implements NewsInnerContract.Vie
     }
 
     @Override
-    public void onFail(String msg) {
+    public void onGetNewsbeanFail(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 

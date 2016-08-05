@@ -1,6 +1,6 @@
 package com.example.mypc.esports2.httputils.news;
 
-import com.example.mypc.esports2.bean.Artical;
+import com.example.mypc.esports2.bean.ArticalBean;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ import retrofit2.http.GET;
 public interface INewsService {
 
     @GET("api/category/article")
-    Call<List<Artical>> getArticalList();
+    Call<List<ArticalBean>> getArticalList();
 }
