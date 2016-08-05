@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -103,12 +102,13 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                             .into(ivHeadImage);
                 }
             });
-            String id = mdb.getId();
+            final String id = mdb.getId();
             adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(View view, int i) {
-                    startActivity(new Intent(MatchDetailsActivity.this, PersonDetailsActivity.class));
-                    Log.i("TAG", "onItemClick: " + signLists.get(i).getId());
+                    Intent intent = new Intent(MatchDetailsActivity.this, PersonDetailsActivity.class);
+                    intent.putExtra("id",id);
+                    startActivity(intent);
                 }
             });
         }
