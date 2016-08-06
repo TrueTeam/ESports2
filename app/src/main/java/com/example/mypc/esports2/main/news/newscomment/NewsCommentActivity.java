@@ -2,8 +2,14 @@ package com.example.mypc.esports2.main.news.newscomment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
@@ -22,6 +28,10 @@ public class NewsCommentActivity extends BaseActivity implements NewsCommentCont
     ListView listviewHotcomment;
     @BindView(R.id.listview_newcomment)
     ListView listviewNewcomment;
+    @BindView(R.id.et_comment_content)
+    EditText etCommentContent;
+    @BindView(R.id.btn_commit_comment)
+    Button btnCommitComment;
     private NewsCommentContract.Presenter presenter;
     private NewsCommentContract.Mode mode;
     private NewsCommentAdapter adapter;
@@ -41,19 +51,49 @@ public class NewsCommentActivity extends BaseActivity implements NewsCommentCont
         presenter.getCommentBean(id);
     }
 
-    @OnClick(R.id.on_back_image)
-    public void onClick() {
-        finish();
-    }
 
     @Override
     public void onGethotCommentSuccess(List<CommentBean> commentBean) {
         adapter = new NewsCommentAdapter(commentBean);
         listviewHotcomment.setAdapter(adapter);
+        listviewNewcomment.setAdapter(adapter);
+        setListViewHeightBasedOnChildren(listviewHotcomment);
+        setListViewHeightBasedOnChildren(listviewNewcomment);
     }
 
     @Override
     public void onGethotCommentFail(String msg) {
 
+    }
+
+    //动态设置listview的高度方法
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() + 1));
+        listView.setLayoutParams(params);
+    }
+
+    @OnClick({R.id.on_back_image, R.id.btn_commit_comment})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.on_back_image:
+                finish();
+                break;
+            case R.id.btn_commit_comment:
+                etCommentContent.setText("");
+                Toast.makeText(NewsCommentActivity.this, "已发送", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

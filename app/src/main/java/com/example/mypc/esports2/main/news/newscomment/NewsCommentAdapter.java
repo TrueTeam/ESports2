@@ -1,5 +1,6 @@
 package com.example.mypc.esports2.main.news.newscomment;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.bean.CommentBean;
+import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
 
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class NewsCommentAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_comment_item, null);
@@ -50,12 +52,23 @@ public class NewsCommentAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        CommentBean commentBean = list.get(position);
+        final CommentBean commentBean = list.get(position);
         holder.tvcontent.setText(commentBean.getContentText());
         holder.tvnickname.setText(commentBean.getNickname());
         holder.tvtime.setText(commentBean.getCreateTime());
         holder.tvprise.setText(commentBean.getPraise());
-        Glide.with(parent.getContext()).load(commentBean.getHeadLink()).into(holder.ivlogo);
+        if (commentBean.getHeadLink() != null) {
+            Glide.with(parent.getContext()).load(commentBean.getHeadLink()).into(holder.ivlogo);
+        }
+
+        holder.ivlogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(parent.getContext(), PersonDetailsActivity.class);
+                intent.putExtra("id", commentBean.getUid());
+                parent.getContext().startActivity(intent);
+            }
+        });
 
         return convertView;
     }
@@ -69,7 +82,7 @@ public class NewsCommentAdapter extends BaseAdapter {
             tvnickname = (TextView) view.findViewById(R.id.tv_nickname_user);
             tvtime = (TextView) view.findViewById(R.id.tv_time_user);
             tvprise = (TextView) view.findViewById(R.id.tv_prise_user);
-            ivlogo = (ImageView) view.findViewById(R.id.iv_news_item_logo);
+            ivlogo = (ImageView) view.findViewById(R.id.cv_comment_user);
         }
     }
 }

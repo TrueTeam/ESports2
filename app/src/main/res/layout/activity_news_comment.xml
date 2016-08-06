@@ -1,77 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.mypc.esports2.main.news.newscomment.NewsCommentActivity">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#000"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/on_back_image"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
+            android:src="@mipmap/icon_arrow_left"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/comment"
+            android:textColor="#FDD101"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#d7d7d7"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/hotcomment"
+                        android:textSize="14sp"/>
+
+                    <ListView
+                        android:id="@+id/listview_hotcomment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </ListView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#d7d7d7"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/newcomment"
+                        android:textSize="14sp"/>
+
+                    <ListView
+                        android:id="@+id/listview_newcomment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </ListView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#000"
-            android:orientation="horizontal"
-            android:padding="10dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cv_comment_buttom"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/moren_header"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp"/>
 
-            <ImageView
-                android:id="@+id/on_back_image"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:scaleType="center"
-                android:src="@mipmap/icon_arrow_left"/>
+        <EditText
+            android:id="@+id/et_comment_content"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/edit_text"
+            android:hint="@string/commenthint"
+            android:textColorHint="#dadada"
+            android:textSize="18sp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/comment"
-                android:textColor="#FDD101"
-                android:textSize="18sp"/>
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_commit_comment"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:paddingLeft="20dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:background="#c2c2c2"
-            android:text="@string/hotcomment"/>
+            android:layout_margin="10dp"
+            android:background="@drawable/comment_commit_background"
+            android:text="发送"
+            android:textColor="#fff"/>
 
-        <ListView
-            android:id="@+id/listview_hotcomment"
-            android:layout_width="match_parent"
-            android:layout_height="300dp">
-
-        </ListView>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:paddingLeft="20dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:background="#c2c2c2"
-            android:text="@string/newcomment"/>
-
-        <ListView
-            android:id="@+id/listview_newcomment"
-            android:layout_width="match_parent"
-            android:layout_height="300dp">
-
-        </ListView>
 
     </LinearLayout>
 
 
-</ScrollView>
+</LinearLayout>
