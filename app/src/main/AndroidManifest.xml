@@ -34,7 +34,8 @@
         <activity android:name=".main.matchdetails.MatchDetailsActivity" />
         <activity android:name=".main.GamesDetailsActivity" />
         <activity android:name=".main.persondetails.PersonDetailsActivity" />
-        <activity android:name=".main.persondetails.PersonDetailsPicActivity"></activity>
+        <activity android:name=".main.persondetails.PersonDetailsPicActivity" />
+        <activity android:name=".main.persondetails.PersonDetailsGridActivity"></activity>
     </application>
 
 </manifest>

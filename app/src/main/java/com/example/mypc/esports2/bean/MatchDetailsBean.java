@@ -2,6 +2,7 @@ package com.example.mypc.esports2.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -389,7 +390,7 @@ public class MatchDetailsBean {
         this.signLists = signLists;
     }
 
-    public static class SignListsBean {
+    public static class SignListsBean implements Serializable {
         @SerializedName("id")
         private String id;
         @SerializedName("name")

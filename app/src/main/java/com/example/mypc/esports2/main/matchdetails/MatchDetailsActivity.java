@@ -21,7 +21,9 @@ import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.bean.MatchDetailsBean;
 import com.example.mypc.esports2.main.GamesDetailsActivity;
 import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
+import com.example.mypc.esports2.main.persondetails.PersonDetailsGridActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,11 +125,16 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
             adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(View view, int i) {
-                    Intent intent = new Intent(MatchDetailsActivity.this, PersonDetailsActivity.class);
-                    intent.putExtra("id", signLists.get(i).getId());
-                    startActivity(intent);
-
-                    //// TODO: 2016/8/6 明日实现新窗口头像和人名的显示
+                    if (mList.size() - 1 == i) {
+                        Intent intent = new Intent(MatchDetailsActivity.this, PersonDetailsGridActivity.class);
+                        intent.putExtra("signLists", (Serializable) signLists);
+                        intent.putExtra("signCount",signCount);
+                        startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(MatchDetailsActivity.this, PersonDetailsActivity.class);
+                        intent.putExtra("id", signLists.get(i).getId());
+                        startActivity(intent);
+                    }
                 }
             });
         }
