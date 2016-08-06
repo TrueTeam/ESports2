@@ -57,5 +57,6 @@ public class PersonDetailsGridActivity extends BaseActivity {
 
     @OnClick(R.id.on_back_image)
     public void onClick() {
+        onBackPressed();
     }
 }

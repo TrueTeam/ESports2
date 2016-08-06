@@ -77,7 +77,7 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
             headLink = result.getHeadLink();
             String followCount = result.getFollowCount();
             String fansCount = result.getFansCount();
-
+            String nickname = result.getNickname();
             List<?> tags = result.getTags();
             if (tags.size() > 0) {
                 tag = (String) tags.get(0);
@@ -86,6 +86,7 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
             String sign = result.getSign();
             Glide.with(this).load(headLink).into(ivPersonDetails);
             Glide.with(this).load(tag).into(ivTargetOne);
+            tvPersonName.setText(nickname);
             tvPersonDetailsFllow.setText("关注 : " + followCount);
             tvPersonDetailsFen.setText("粉丝 : " + fansCount);
             tvPersonDetailsId.setText(id);

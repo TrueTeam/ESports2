@@ -28,6 +28,7 @@
         <activity android:name=".main.MyMatchActivity" />
         <activity android:name=".main.MyReplyActivity" />
         <activity android:name=".main.InvitationActivity" />
+        <activity android:name=".main.InterestedActivity" />
         <activity android:name=".main.TuCaoActivity" />
         <activity android:name=".main.MyTeamActivity" />
         <activity android:name=".main.news.newsdetail.NewsDetailActivity" />
@@ -35,8 +36,10 @@
         <activity android:name=".main.GamesDetailsActivity" />
         <activity android:name=".main.persondetails.PersonDetailsActivity" />
         <activity android:name=".main.persondetails.PersonDetailsPicActivity" />
-        <activity android:name=".main.persondetails.PersonDetailsGridActivity"/>
-        <activity android:name=".main.news.newscomment.NewsCommentActivity"/>
+        <activity android:name=".main.persondetails.PersonDetailsGridActivity" />
+        <activity android:name=".main.news.newscomment.NewsCommentActivity" />
+        <activity android:name=".main.matchdetails.RoleSelectionActivity" />
+        <activity android:name=".main.persondetails.EditingInterfaceActivity"></activity>
     </application>
 
 </manifest>

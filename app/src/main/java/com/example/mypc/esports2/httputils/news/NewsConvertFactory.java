@@ -1,6 +1,6 @@
 package com.example.mypc.esports2.httputils.news;
 
-import com.example.mypc.esports2.bean.Artical;
+import com.example.mypc.esports2.bean.ArticalBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,17 +32,17 @@ public class NewsConvertFactory extends Converter.Factory {
         return super.requestBodyConverter(type, parameterAnnotations, methodAnnotations, retrofit);
     }
 
-    public class NewsConvert implements Converter<ResponseBody, List<Artical>> {
+    public class NewsConvert implements Converter<ResponseBody, List<ArticalBean>> {
 
         @Override
-        public List<Artical> convert(ResponseBody value) throws IOException {
+        public List<ArticalBean> convert(ResponseBody value) throws IOException {
             String result = value.string();
-            List<Artical> artical = getArtical(result);
-            return artical;
+            List<ArticalBean> articalBean = getArtical(result);
+            return articalBean;
         }
 
-        private List<Artical> getArtical(String result) {
-            List<Artical> list = new ArrayList<>();
+        private List<ArticalBean> getArtical(String result) {
+            List<ArticalBean> list = new ArrayList<>();
             try {
                 JSONArray jsonArray = new JSONArray(result);
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -52,8 +52,8 @@ public class NewsConvertFactory extends Converter.Factory {
                     String model_alias = object.getString("model_alias");
                     String model_title = object.getString("model_title");
                     String has_service = object.getString("has_service");
-                    Artical artical = new Artical(id, title, model_alias, model_title, has_service);
-                    list.add(artical);
+                    ArticalBean articalBean = new ArticalBean(id, title, model_alias, model_title, has_service);
+                    list.add(articalBean);
                 }
                 return list;
             } catch (JSONException e) {

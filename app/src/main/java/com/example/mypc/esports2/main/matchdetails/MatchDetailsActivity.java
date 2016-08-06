@@ -98,6 +98,7 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                 btnEntered.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        startActivity(new Intent(MatchDetailsActivity.this,RoleSelectionActivity.class));
                         Toast.makeText(MatchDetailsActivity.this,"现在可以报名.. 来报名吧",Toast.LENGTH_SHORT).show();
                     }
                 });

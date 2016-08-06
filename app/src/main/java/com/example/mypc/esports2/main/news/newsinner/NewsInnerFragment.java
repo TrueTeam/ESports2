@@ -19,9 +19,9 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.bean.AdBean;
-import com.example.mypc.esports2.bean.Artical;
+import com.example.mypc.esports2.bean.ArticalBean;
 import com.example.mypc.esports2.bean.ListBean;
-import com.example.mypc.esports2.bean.NewsAD;
+import com.example.mypc.esports2.bean.NewsBean;
 import com.example.mypc.esports2.main.news.newsdetail.NewsDetailActivity;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public class NewsInnerFragment extends Fragment implements NewsInnerContract.Vie
     private NewsInnerRecycleviewAdapter adapter;
     private NewsInnerViewpagerAdapter viewpagerAdapter;
     private LinearLayoutManager manager;
-    private Artical artical;
+    private ArticalBean articalBean;
 
     private Handler handler = new Handler() {
         @Override
@@ -71,7 +71,7 @@ public class NewsInnerFragment extends Fragment implements NewsInnerContract.Vie
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerviewInnerNews.setLayoutManager(manager);
-        presenter.getData(getArtical().getId());
+        presenter.getData(getArticalBean().getId());
 
         //开始线程任务
         final AutoRunTask autoTask = new AutoRunTask();
@@ -108,25 +108,25 @@ public class NewsInnerFragment extends Fragment implements NewsInnerContract.Vie
         return view;
     }
 
-    public Artical getArtical() {
-        return artical;
+    public ArticalBean getArticalBean() {
+        return articalBean;
     }
 
-    public NewsInnerFragment setArtical(Artical artical) {
-        this.artical = artical;
+    public NewsInnerFragment setArticalBean(ArticalBean articalBean) {
+        this.articalBean = articalBean;
         return this;
     }
 
     @Override
-    public void onSuccess(final NewsAD newsAD) {
-        final List<AdBean> ad = newsAD.getAd();
+    public void onSuccess(final NewsBean newsBean) {
+        final List<AdBean> ad = newsBean.getAd();
         viewpagerAdapter = new NewsInnerViewpagerAdapter(ad);
         viewpagerInnerNews.setAdapter(viewpagerAdapter);
 
         tvViewpagerTitle.setText(ad.get(0).getTitle());
         viewpagerInnerNews.setCurrentItem(100 * ad.size());
 
-        final List<ListBean> list = newsAD.getList();
+        final List<ListBean> list = newsBean.getList();
         adapter = new NewsInnerRecycleviewAdapter(R.layout.news_inner_listitem, list);
         recyclerviewInnerNews.setAdapter(adapter);
 

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.login.LoginActivity;
 import com.example.mypc.esports2.main.ExchangeActivity;
+import com.example.mypc.esports2.main.InterestedActivity;
 import com.example.mypc.esports2.main.InvitationActivity;
 import com.example.mypc.esports2.main.MyMatchActivity;
 import com.example.mypc.esports2.main.MyPartActivity;
@@ -25,7 +26,7 @@ import com.example.mypc.esports2.main.MyReplyActivity;
 import com.example.mypc.esports2.main.MyTeamActivity;
 import com.example.mypc.esports2.main.SettingActivity;
 import com.example.mypc.esports2.main.TuCaoActivity;
-import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
+import com.example.mypc.esports2.main.persondetails.EditingInterfaceActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -114,8 +115,7 @@ public class MyGamesFragment extends Fragment {
                 break;
             case R.id.head_image_pic:
                 if (MFLAG){
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getContext(), PersonDetailsActivity.class));
+                    startActivity(new Intent(getContext(), EditingInterfaceActivity.class));
                 }else{
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
@@ -157,7 +157,7 @@ public class MyGamesFragment extends Fragment {
                 break;
             case R.id.head_tv_mygame:
                 if (MFLAG) {
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getContext(), InterestedActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
