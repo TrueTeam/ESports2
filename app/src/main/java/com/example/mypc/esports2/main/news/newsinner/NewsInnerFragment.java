@@ -205,5 +205,4 @@ public class NewsInnerFragment extends Fragment implements NewsInnerContract.Vie
         }
     }
 
-
 }
