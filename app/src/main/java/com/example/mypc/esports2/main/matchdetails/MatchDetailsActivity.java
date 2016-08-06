@@ -52,6 +52,11 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
     RecyclerView rvIncludeView;
     @BindView(R.id.tv_web_p)
     TextView tvWebP;
+
+    private static final int REGIST_END = 0;
+    private static final int REGIST_NOSTART = 1;
+    private static final int REGISTING_MARK = 2;
+    private static final int ACTIVING_MARK = 3;
     private MatchDetailsContract.Model model;
     private MatchDetailsContract.Persenter persenter;
     private Handler handler = new Handler();
@@ -59,6 +64,7 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
     private GamesDetailsAdapter adapter;
     private List<MatchDetailsBean.SignListsBean> signLists;
     private List<MatchDetailsBean.SignListsBean> mList;
+    private String matchStatus;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,9 +74,42 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
+        matchStatus = intent.getStringExtra("matchStatus");
         persenter.getDate(id);
 
+        switch (Integer.parseInt(matchStatus)) {
+            case REGIST_END:
+                btnEntered.setEnabled(false);
+                btnEntered.setText("已结束");
+                btnEntered.setTextColor(0xff00c3be);
+                btnEntered.setBackgroundColor(0xffeeeeee);
+                break;
+            case REGIST_NOSTART:
+                btnEntered.setEnabled(false);
+                btnEntered.setText("未开始");
+                btnEntered.setTextColor(0xff00c3be);
+                btnEntered.setBackgroundColor(0xffeeeeee);
+                break;
+            case REGISTING_MARK:
+                btnEntered.setEnabled(true);
+                btnEntered.setText("立即报名");
+                btnEntered.setTextColor(0xffeeeeee);
+                btnEntered.setBackgroundColor(0xff00c3be);
+                btnEntered.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MatchDetailsActivity.this,"现在可以报名.. 来报名吧",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                break;
+            case ACTIVING_MARK:
+                btnEntered.setEnabled(false);
+                btnEntered.setText("活动中");
+                btnEntered.setTextColor(0xff00c3be);
+                btnEntered.setBackgroundColor(0xffeeeeee);
+                break;
 
+        }
     }
 
     @Override
@@ -90,11 +129,11 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                 for (int i = 0; i < 41; i++) {
                     mList.add(signLists.get(i));
                 }
-            }else{
+            } else {
                 mList.addAll(signLists);
             }
 
-            mList.add(new MatchDetailsBean.SignListsBean("10","halou","R.mipmap.icon_mao"));
+            mList.add(new MatchDetailsBean.SignListsBean("10", "halou", "R.mipmap.icon_mao"));
             StaggeredGridLayoutManager sgm = new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL);
             rvIncludeView.setLayoutManager(sgm);
             adapter = new GamesDetailsAdapter(R.layout.rv_details_adapter, mList);
@@ -128,9 +167,9 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                     if (mList.size() - 1 == i) {
                         Intent intent = new Intent(MatchDetailsActivity.this, PersonDetailsGridActivity.class);
                         intent.putExtra("signLists", (Serializable) signLists);
-                        intent.putExtra("signCount",signCount);
+                        intent.putExtra("signCount", signCount);
                         startActivity(intent);
-                    }else{
+                    } else {
                         Intent intent = new Intent(MatchDetailsActivity.this, PersonDetailsActivity.class);
                         intent.putExtra("id", signLists.get(i).getId());
                         startActivity(intent);

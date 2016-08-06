@@ -61,8 +61,10 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
             @Override
             public void onItemClick(View view, int i) {
                 String id = mList.get(i).getId();
+                String matchStatus = mList.get(i).getMatchStatus();
                 Intent intent = new Intent(getContext(), MatchDetailsActivity.class);
                 intent.putExtra("id",id);
+                intent.putExtra("matchStatus",matchStatus);
                 startActivity(intent);
             }
         });
