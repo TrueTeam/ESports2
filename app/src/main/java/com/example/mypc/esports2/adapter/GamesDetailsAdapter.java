@@ -14,17 +14,26 @@ import java.util.List;
  * Created by MyPC on 2016/8/5.
  */
 public class GamesDetailsAdapter extends BaseQuickAdapter<MatchDetailsBean.SignListsBean> {
-
-
+    private int count = 0;
     public GamesDetailsAdapter(int layoutResId, List<MatchDetailsBean.SignListsBean> data) {
         super(layoutResId, data);
+
     }
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, MatchDetailsBean.SignListsBean signListsBean) {
-
         Glide.with(baseViewHolder.convertView.getContext())
-                    .load(signListsBean.getHeadLink())
-                    .into((ImageView) baseViewHolder.getView(R.id.iv_circe_view));
+                .load(signListsBean.getHeadLink())
+                .into((ImageView) baseViewHolder.getView(R.id.iv_circe_view));
+        if (signListsBean.getHeadLink().equals("R.mipmap.icon_mao")){
+                Glide.with(baseViewHolder.convertView.getContext())
+                        .load(R.mipmap.icon_mao)
+                        .into((ImageView) baseViewHolder.getView(R.id.iv_circe_view));
+            }
+
+
+
     }
+
+
 }

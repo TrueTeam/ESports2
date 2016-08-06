@@ -37,7 +37,7 @@ public interface IGamesService {
             , @QueryMap()HashMap<String,String> params);
 
 
-    @GET("api/users/i/{aaa}")
+    @GET("api/users/{aaa}")
     Call<PersonDetailsBean> getPersonDetailsBean(@Path("aaa")String path
             , @QueryMap()HashMap<String,String> params);
 }
