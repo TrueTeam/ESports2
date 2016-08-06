@@ -1,6 +1,7 @@
 package com.example.mypc.esports2.main.news.newscomment;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,15 +61,6 @@ public class NewsCommentAdapter extends BaseAdapter {
         if (commentBean.getHeadLink() != null) {
             Glide.with(parent.getContext()).load(commentBean.getHeadLink()).into(holder.ivlogo);
         }
-
-        holder.ivlogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(parent.getContext(), PersonDetailsActivity.class);
-                intent.putExtra("id", commentBean.getUid());
-                parent.getContext().startActivity(intent);
-            }
-        });
 
         return convertView;
     }

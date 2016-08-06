@@ -2,8 +2,10 @@ package com.example.mypc.esports2.main.news.newscomment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.bean.CommentBean;
+import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
 
 import java.util.List;
 
@@ -49,16 +52,30 @@ public class NewsCommentActivity extends BaseActivity implements NewsCommentCont
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
         presenter.getCommentBean(id);
+
+
+//        listviewNewcomment.setOnClickListener(this);
     }
 
 
     @Override
-    public void onGethotCommentSuccess(List<CommentBean> commentBean) {
+    public void onGethotCommentSuccess(final List<CommentBean> commentBean) {
         adapter = new NewsCommentAdapter(commentBean);
         listviewHotcomment.setAdapter(adapter);
         listviewNewcomment.setAdapter(adapter);
         setListViewHeightBasedOnChildren(listviewHotcomment);
         setListViewHeightBasedOnChildren(listviewNewcomment);
+
+//        listviewHotcomment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(parent.getContext(), PersonDetailsActivity.class);
+//                String uid = commentBean.get(position).getUid();
+//                intent.putExtra("id", uid);
+//                Log.i("TAG", "onClick: "+uid);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     @Override
