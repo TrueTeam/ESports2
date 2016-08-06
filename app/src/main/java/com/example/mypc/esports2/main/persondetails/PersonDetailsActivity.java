@@ -3,7 +3,6 @@ package com.example.mypc.esports2.main.persondetails;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -72,14 +71,12 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
 
     @Override
     public void onSuccess(PersonDetailsBean result) {
-        Log.i("TAG", "onSuccess: " + "成功");
         if (result != null) {
             headLink = result.getHeadLink();
             String followCount = result.getFollowCount();
             String fansCount = result.getFansCount();
             List<?> tags = result.getTags();
             String tag = (String) tags.get(0);
-            Log.i("TAG", "onSuccess: "+tag);
             String id = result.getId();
             String sign = result.getSign();
             Glide.with(this).load(headLink).into(ivPersonDetails);
@@ -93,7 +90,6 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
 
     @Override
     public void onFail(String erro) {
-        Log.i("TAG", "onSuccess: " + erro);
     }
 
     @OnClick({R.id.on_back_image, R.id.btn_call_other, R.id.btn_fllow,R.id.iv_person_details})
@@ -107,6 +103,9 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
             case R.id.btn_fllow:
                 break;
             case R.id.iv_person_details:
+                Intent intent = new Intent(this, PersonDetailsPicActivity.class);
+                intent.putExtra("headLink",headLink);
+                startActivity(intent);
                 break;
 
         }

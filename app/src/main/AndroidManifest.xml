@@ -33,7 +33,8 @@
         <activity android:name=".main.news.NewsDetailActivity" />
         <activity android:name=".main.matchdetails.MatchDetailsActivity" />
         <activity android:name=".main.GamesDetailsActivity" />
-        <activity android:name=".main.persondetails.PersonDetailsActivity"></activity>
+        <activity android:name=".main.persondetails.PersonDetailsActivity" />
+        <activity android:name=".main.persondetails.PersonDetailsPicActivity"></activity>
     </application>
 
 </manifest>
