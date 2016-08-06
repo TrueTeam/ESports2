@@ -2,7 +2,6 @@ package com.example.mypc.esports2.main.news.newscomment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -53,7 +52,7 @@ public class NewsCommentActivity extends BaseActivity implements NewsCommentCont
         String id = intent.getStringExtra("id");
         presenter.getCommentBean(id);
 
-
+            //// TODO: 2016/8/6 listView 如果有需要回来继续执行
 //        listviewNewcomment.setOnClickListener(this);
     }
 
@@ -66,21 +65,20 @@ public class NewsCommentActivity extends BaseActivity implements NewsCommentCont
         setListViewHeightBasedOnChildren(listviewHotcomment);
         setListViewHeightBasedOnChildren(listviewNewcomment);
 
-//        listviewHotcomment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(parent.getContext(), PersonDetailsActivity.class);
-//                String uid = commentBean.get(position).getUid();
-//                intent.putExtra("id", uid);
-//                Log.i("TAG", "onClick: "+uid);
-//                startActivity(intent);
-//            }
-//        });
+        listviewHotcomment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(parent.getContext(), PersonDetailsActivity.class);
+                String uid = commentBean.get(position).getUid();
+                intent.putExtra("id", uid);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void onGethotCommentFail(String msg) {
-
+        Toast.makeText(NewsCommentActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
     //动态设置listview的高度方法

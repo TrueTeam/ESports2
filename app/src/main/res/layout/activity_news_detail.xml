@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.mypc.esports2.main.news.NewsDetailActivity">
+    tools:context=".main.news.newsdetail.NewsDetailActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -92,6 +92,7 @@
                 android:textColor="#000"/>
 
             <ImageView
+                android:id="@+id/iv_detail_comment"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@mipmap/comment_icon2"/>

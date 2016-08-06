@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +22,8 @@ import com.example.mypc.esports2.bean.AdBean;
 import com.example.mypc.esports2.bean.Artical;
 import com.example.mypc.esports2.bean.ListBean;
 import com.example.mypc.esports2.bean.NewsAD;
-import com.example.mypc.esports2.main.news.NewsDetailActivity;
-import com.example.mypc.esports2.main.news.NewsViewpagerAdapter;
+import com.example.mypc.esports2.main.news.newsdetail.NewsDetailActivity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;

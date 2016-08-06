@@ -40,4 +40,9 @@
         <item>产品BUG</item>
         <item>其他</item>
     </string-array>
+    <string name="comment">评论区</string>
+    <string name="hotcomment">热门评论</string>
+    <string name="newcomment">更新评论</string>
+    <string name="commenthint">写点什么吧</string>
+
 </resources>

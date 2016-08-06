@@ -1,9 +1,7 @@
 package com.example.mypc.esports2.httputils.news.newscomment;
 
 import com.example.mypc.esports2.config.NewsUrlConfig;
-import com.example.mypc.esports2.httputils.news.newsinner.INewsInnerService;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,11 +17,11 @@ public class NewsCommentHttpHelper {
     INewsCommentService service;
 
     private NewsCommentHttpHelper() {
-        gson = new GsonBuilder().serializeNulls().create();
+//        gson = new GsonBuilder().serializeNulls().create();
         retrofit = new Retrofit.Builder()
                 //对提交的参数或者返回值进行预处理
                 .baseUrl(NewsUrlConfig.path.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(INewsCommentService.class);
     }

@@ -30,12 +30,13 @@
         <activity android:name=".main.InvitationActivity" />
         <activity android:name=".main.TuCaoActivity" />
         <activity android:name=".main.MyTeamActivity" />
-        <activity android:name=".main.news.NewsDetailActivity" />
+        <activity android:name=".main.news.newsdetail.NewsDetailActivity" />
         <activity android:name=".main.matchdetails.MatchDetailsActivity" />
         <activity android:name=".main.GamesDetailsActivity" />
         <activity android:name=".main.persondetails.PersonDetailsActivity" />
         <activity android:name=".main.persondetails.PersonDetailsPicActivity" />
-        <activity android:name=".main.persondetails.PersonDetailsGridActivity"></activity>
+        <activity android:name=".main.persondetails.PersonDetailsGridActivity"/>
+        <activity android:name=".main.news.newscomment.NewsCommentActivity"/>
     </application>
 
 </manifest>

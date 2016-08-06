@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mypc.esports2.R;
@@ -52,6 +53,7 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
     private PersonDetailsContract.Persenter persenter;
     private PersonDetailsContract.Model model;
     private String headLink;
+    private String tag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,14 +77,17 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
             headLink = result.getHeadLink();
             String followCount = result.getFollowCount();
             String fansCount = result.getFansCount();
+
             List<?> tags = result.getTags();
-            String tag = (String) tags.get(0);
+            if (tags.size() > 0) {
+                tag = (String) tags.get(0);
+            }
             String id = result.getId();
             String sign = result.getSign();
             Glide.with(this).load(headLink).into(ivPersonDetails);
             Glide.with(this).load(tag).into(ivTargetOne);
-            tvPersonDetailsFllow.setText("关注 : "+followCount);
-            tvPersonDetailsFen.setText("粉丝 : "+fansCount);
+            tvPersonDetailsFllow.setText("关注 : " + followCount);
+            tvPersonDetailsFen.setText("粉丝 : " + fansCount);
             tvPersonDetailsId.setText(id);
             tvPersonDetailsContent.setText(sign);
         }
@@ -92,19 +97,21 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
     public void onFail(String erro) {
     }
 
-    @OnClick({R.id.on_back_image, R.id.btn_call_other, R.id.btn_fllow,R.id.iv_person_details})
+    @OnClick({R.id.on_back_image, R.id.btn_call_other, R.id.btn_fllow, R.id.iv_person_details})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.on_back_image:
                 onBackPressed();
                 break;
             case R.id.btn_call_other:
+                Toast.makeText(this, "打招呼", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_fllow:
+                Toast.makeText(this, "关注", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_person_details:
                 Intent intent = new Intent(this, PersonDetailsPicActivity.class);
-                intent.putExtra("headLink",headLink);
+                intent.putExtra("headLink", headLink);
                 startActivity(intent);
                 break;
 

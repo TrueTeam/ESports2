@@ -2,6 +2,8 @@ package com.example.mypc.esports2.httputils.persondetails;
 
 import com.example.mypc.esports2.config.UrlConfig;
 import com.example.mypc.esports2.httputils.IGamesService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,8 +19,9 @@ public class PersonHttpHelper {
     private static PersonHttpHelper helper;
 
     private PersonHttpHelper(){
+        Gson gson = new GsonBuilder().serializeNulls().create();
         retrofit = new Retrofit.Builder()
-                 .addConverterFactory(GsonConverterFactory.create())
+                 .addConverterFactory(GsonConverterFactory.create(gson))
                  .baseUrl(UrlConfig.Path.BASE_URL)
                  .build();
 
