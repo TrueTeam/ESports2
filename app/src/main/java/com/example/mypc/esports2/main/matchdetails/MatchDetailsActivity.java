@@ -22,6 +22,10 @@ import com.example.mypc.esports2.bean.MatchDetailsBean;
 import com.example.mypc.esports2.main.GamesDetailsActivity;
 import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
 import com.example.mypc.esports2.main.persondetails.PersonDetailsGridActivity;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -52,6 +56,8 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
     RecyclerView rvIncludeView;
     @BindView(R.id.tv_web_p)
     TextView tvWebP;
+    @BindView(R.id.image_share_sdk)
+    ImageView imageShare;
 
     private static final int REGIST_END = 0;
     private static final int REGIST_NOSTART = 1;
@@ -98,8 +104,8 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                 btnEntered.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(MatchDetailsActivity.this,RoleSelectionActivity.class));
-                        Toast.makeText(MatchDetailsActivity.this,"现在可以报名.. 来报名吧",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MatchDetailsActivity.this, RoleSelectionActivity.class));
+                        Toast.makeText(MatchDetailsActivity.this, "现在可以报名.. 来报名吧", Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;
@@ -185,7 +191,7 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
         Toast.makeText(this, "网络连接错误", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick({R.id.on_back_image, R.id.tv_include_more})
+    @OnClick({R.id.on_back_image, R.id.tv_include_more, R.id.image_share_sdk})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.on_back_image:
@@ -196,6 +202,45 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                 intent.putExtra("content", content);
                 startActivity(intent);
                 break;
+            case R.id.image_share_sdk:
+                SHARE_MEDIA[] displaylist = new SHARE_MEDIA[]
+                        {
+                                SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.SINA,
+                                SHARE_MEDIA.QQ,SHARE_MEDIA.SMS
+                        };
+
+                UMShareListener umShareListener = new UMShareListener() {
+                    @Override
+                    public void onResult(SHARE_MEDIA platform) {
+                        Toast.makeText(MatchDetailsActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(SHARE_MEDIA platform, Throwable t) {
+                        Toast.makeText(MatchDetailsActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancel(SHARE_MEDIA platform) {
+                        Toast.makeText(MatchDetailsActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+                    }
+                };
+
+                new ShareAction(this).setDisplayList(displaylist)
+                        .withText(content)
+                        .withTitle("title")
+                        .withTargetUrl("http://www.baidu.com")
+                        .setListenerList(umShareListener)
+                        .open();
+                break;
         }
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -3,8 +3,6 @@ package com.example.mypc.esports2.fragment.findFragmentt;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.print.PrintHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +15,7 @@ import com.example.mypc.esports2.adapter.FindcircleAdapter;
 import com.example.mypc.esports2.adapter.FindpostAdapter;
 import com.example.mypc.esports2.bean.CircleBean;
 import com.example.mypc.esports2.bean.PostBean;
-import com.example.mypc.esports2.config.UrlConfig;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -88,7 +83,7 @@ public class FindfindFragment extends Fragment  implements FindFragmentContract.
 
     @Override
     public void onFail(String msg) {
-        Toast.makeText(getContext(),msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -100,6 +95,6 @@ public class FindfindFragment extends Fragment  implements FindFragmentContract.
 
     @Override
     public void onFailpost(String msg) {
-        Toast.makeText(getContext(),msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),msg, Toast.LENGTH_SHORT).show();
     }
 }

@@ -111,90 +111,90 @@ public class MyGamesFragment extends Fragment {
                 }
                 break;
             case R.id.head_image_setting:
-                startActivity(new Intent(getContext(), SettingActivity.class));
+                startActivity(new Intent(getActivity(), SettingActivity.class));
                 break;
             case R.id.head_image_pic:
                 if (MFLAG){
-                    startActivity(new Intent(getContext(), EditingInterfaceActivity.class));
+                    startActivity(new Intent(getActivity(), EditingInterfaceActivity.class));
                 }else{
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.tv_login_text:
                 if (MFLAG){
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 }else{
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_quest:
                 if (MFLAG) {
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_pantaoyuan:
                 if (MFLAG) {
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_record:
                 if (MFLAG) {
-                    startActivity(new Intent(getContext(), ExchangeActivity.class));
+                    startActivity(new Intent(getActivity(), ExchangeActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_more:
                 if (MFLAG) {
-                    startActivity(new Intent(getContext(), MyPartActivity.class));
+                    startActivity(new Intent(getActivity(), MyPartActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_mygame:
                 if (MFLAG) {
-                    startActivity(new Intent(getContext(), InterestedActivity.class));
+                    startActivity(new Intent(getActivity(), InterestedActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_war_team:
                 if (MFLAG) {
-                    startActivity(new Intent(getContext(), MyTeamActivity.class));
+                    startActivity(new Intent(getActivity(), MyTeamActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_mine_march:
                 if (MFLAG) {
-                    startActivity(new Intent(getContext(), MyMatchActivity.class));
+                    startActivity(new Intent(getActivity(), MyMatchActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_replay:
                 if (MFLAG) {
-                    startActivity(new Intent(getContext(), MyReplyActivity.class));
+                    startActivity(new Intent(getActivity(), MyReplyActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_yaoqingma:
                 if (MFLAG) {
-                    startActivity(new Intent(getContext(), InvitationActivity.class));
+                    startActivity(new Intent(getActivity(), InvitationActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_tucao:
                 if (MFLAG) {
-                    startActivity(new Intent(getContext(), TuCaoActivity.class));
+                    startActivity(new Intent(getActivity(), TuCaoActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
         }

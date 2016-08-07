@@ -29,6 +29,7 @@
             android:textColor="#FDD101"
             android:textSize="18sp" />
         <ImageView
+            android:id="@+id/image_share_sdk"
             android:layout_width="20dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"

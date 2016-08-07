@@ -52,7 +52,7 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
         View view = inflater.inflate(R.layout.fragment_games_inner, container, false);
         ButterKnife.bind(this, view);
         mList = new ArrayList<>();
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyViewInner.setLayoutManager(llm);
         mPagerAdapter = new MatchInnerAdapter(R.layout.inner_recyview_layout, mList);
@@ -62,7 +62,7 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
             public void onItemClick(View view, int i) {
                 String id = mList.get(i).getId();
                 String matchStatus = mList.get(i).getMatchStatus();
-                Intent intent = new Intent(getContext(), MatchDetailsActivity.class);
+                Intent intent = new Intent(getActivity(), MatchDetailsActivity.class);
                 intent.putExtra("id",id);
                 intent.putExtra("matchStatus",matchStatus);
                 startActivity(intent);
@@ -95,7 +95,7 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
 
     @Override
     public void onFild(String erro) {
-        Toast.makeText(getContext(), "网络连接错误", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "网络连接错误", Toast.LENGTH_SHORT).show();
     }
 
 }

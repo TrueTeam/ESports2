@@ -41,6 +41,6 @@ public class UnLoginFragment extends Fragment {
 
     @OnClick(R.id.btn_un_login)
     public void onClick() {
-        startActivity(new Intent(getContext(), LoginActivity.class));
+        startActivity(new Intent(getActivity(), LoginActivity.class));
     }
 }
