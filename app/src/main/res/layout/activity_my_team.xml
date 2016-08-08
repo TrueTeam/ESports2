@@ -44,6 +44,13 @@
         android:layout_height="match_parent">
 
     </ListView>
+    <TextView
+        android:id="@+id/tv_empty_view"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:text="当前没有加入战队,请加入一个战队"/>
     <Button
         android:id="@+id/btn_add_team"
         android:text="创建战队"

@@ -2,6 +2,7 @@ package com.example.mypc.esports2.gamelib;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -115,7 +116,7 @@ public class MyGamesFragment extends Fragment {
                 break;
             case R.id.head_image_pic:
                 if (MFLAG){
-                    startActivity(new Intent(getActivity(), EditingInterfaceActivity.class));
+                    startActivityForResult(new Intent(getActivity(), EditingInterfaceActivity.class),1);
                 }else{
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
@@ -197,6 +198,17 @@ public class MyGamesFragment extends Fragment {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -1){
+            Bundle extras = data.getExtras();
+            Bitmap bitmap = extras.getParcelable("photo");
+            headImagePic.setImageBitmap(bitmap);
+            headCircleiv.setImageBitmap(bitmap);
         }
     }
 }

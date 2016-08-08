@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">umeng_example</string>
+    <string name="app_name">ESports2</string>
+    <string name="news">资讯</string>
+    <string name="message">消息</string>
+    <string name="games">赛事</string>
+    <string name="found">发现</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="games_mission">做任务</string>
+    <string name="pantaoyuan">蟠桃园</string>
+    <string name="games_changes">兑换记录</string>
+    <string name="games_more"><![CDATA[更多>]]></string>
+    <string name="my_games">我的游戏</string>
+    <string name="my_teams">我的战队</string>
+    <string name="my_macth">我的赛事</string>
+    <string name="yaoqingma">邀请码</string>
+    <string name="tucao">吐槽</string>
+    <string name="active_role">活跃角色</string>
+    <string name="click_head_image">点击头像登录</string>
+    <string name="my_recode">我的回复</string>
+    <string name="tv_match_fragment">赛事</string>
+
+    <string-array name="logins">
+        <item>登录</item>
+        <item>注册</item>
+    </string-array>
+    <string-array name="match_selcet_fragment">
+        <item>全部游戏</item>
+        <item>炉石传说</item>
+        <item>英雄联盟</item>
+        <item>守望先锋</item>
+    </string-array>
+    <string name="invitation_msg">*每邀请成功一个好友，好友将获得100蟠桃</string>
+    <string name="invitation_msg_one">*补充填写你好友的邀请码，只能填写一次!</string>
+    <string name="invitation_msg_two">*填写邀请码，您将获得10蟠桃</string>
+    <string name="news_item_title">度娘说标题要长</string>
+    <string name="newsDetail">新闻资讯</string>
+    <string-array name="spinner_context">
+        <item>功能建议</item>
+        <item>产品BUG</item>
+        <item>其他</item>
+    </string-array>
+    <string name="comment">评论区</string>
+    <string name="hotcomment">热门评论</string>
+    <string name="newcomment">更新评论</string>
+    <string name="commenthint">写点什么吧</string>
+
     <string name="umeng_share">分享</string>
     <string name="umeng_auth">授权</string>
     <string name="umeng_deleauth">清除对应授权</string>
@@ -104,49 +149,5 @@
 
 
 
-    <string name="app_names">ESports2</string>
-    <string name="news">资讯</string>
-    <string name="message">消息</string>
-    <string name="games">赛事</string>
-    <string name="found">发现</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="games_mission">做任务</string>
-    <string name="pantaoyuan">蟠桃园</string>
-    <string name="games_changes">兑换记录</string>
-    <string name="games_more"><![CDATA[更多>]]></string>
-    <string name="my_games">我的游戏</string>
-    <string name="my_teams">我的战队</string>
-    <string name="my_macth">我的赛事</string>
-    <string name="yaoqingma">邀请码</string>
-    <string name="tucao">吐槽</string>
-    <string name="active_role">活跃角色</string>
-    <string name="click_head_image">点击头像登录</string>
-    <string name="my_recode">我的回复</string>
-    <string name="tv_match_fragment">赛事</string>
-
-    <string-array name="logins">
-        <item>登录</item>
-        <item>注册</item>
-    </string-array>
-    <string-array name="match_selcet_fragment">
-        <item>全部游戏</item>
-        <item>炉石传说</item>
-        <item>英雄联盟</item>
-        <item>守望先锋</item>
-    </string-array>
-    <string name="invitation_msg">*每邀请成功一个好友，好友将获得100蟠桃</string>
-    <string name="invitation_msg_one">*补充填写你好友的邀请码，只能填写一次!</string>
-    <string name="invitation_msg_two">*填写邀请码，您将获得10蟠桃</string>
-    <string name="news_item_title">度娘说标题要长</string>
-    <string name="newsDetail">新闻资讯</string>
-    <string-array name="spinner_context">
-        <item>功能建议</item>
-        <item>产品BUG</item>
-        <item>其他</item>
-    </string-array>
-    <string name="comment">评论区</string>
-    <string name="hotcomment">热门评论</string>
-    <string name="newcomment">更新评论</string>
-    <string name="commenthint">写点什么吧</string>
 </resources>

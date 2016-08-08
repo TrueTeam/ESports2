@@ -36,4 +36,5 @@ dependencies {
     compile 'com.alexvasilkov:gesture-views:2.1.1'
     compile 'com.umeng.analytics:analytics:latest.integration'
 
+
 }

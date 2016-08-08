@@ -28,6 +28,5 @@ public class PersonDetailsPicActivity extends BaseActivity {
         String headLink = intent.getStringExtra("headLink");
         gestureimage = (GestureImageView) findViewById(R.id.gestureimage);
         Glide.with(this).load(headLink).into(gestureimage);
-
     }
 }

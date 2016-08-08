@@ -46,6 +46,7 @@
             android:button="@null"
             android:gravity="center"
             android:text="进行中"
+            android:checked="true"
             android:textColor="@color/text_color_change"
             android:textSize="16sp" />
 

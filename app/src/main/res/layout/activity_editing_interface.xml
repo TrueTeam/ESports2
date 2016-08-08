@@ -35,14 +35,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
-            android:visibility="visible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:padding="5dp"
+            android:id="@+id/head_image_one"
+            android:visibility="gone"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
         <ImageView
+            android:padding="5dp"
+            android:id="@+id/head_image_two"
+            android:visibility="gone"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <ImageView
+            android:padding="5dp"
+            android:id="@+id/head_image_three"
+            android:visibility="gone"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <ImageView android:padding="5dp"
             android:id="@+id/add_head_image"
             android:src="@mipmap/icon_add_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
     </LinearLayout>
     <TextView
         android:padding="10dp"

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#eee5e5"
     tools:context="com.example.mypc.esports2.main.SettingActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <RelativeLayout
         android:padding="15dp"
         android:layout_width="match_parent"
@@ -128,4 +131,13 @@
             android:src="@mipmap/icon_arrow_white_right"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
-</LinearLayout>
+
+    </LinearLayout>
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DD191D"
+        android:textColor="@color/cardview_light_background"
+        android:text="退出登录"/>
+</RelativeLayout>

@@ -6,13 +6,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MyTeamActivity extends BaseActivity {
@@ -27,13 +27,14 @@ public class MyTeamActivity extends BaseActivity {
     ListView lvTeamList;
     @BindView(R.id.btn_add_team)
     Button btnAddTeam;
+    @BindView(R.id.tv_empty_view)
+    TextView tvEmptyView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        lvTeamList.setEmptyView(tvEmptyView);
     }
 
     @Override
