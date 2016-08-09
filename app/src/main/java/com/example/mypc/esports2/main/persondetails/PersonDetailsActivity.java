@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.bean.PersonDetailsBean;
@@ -105,10 +106,22 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
                 onBackPressed();
                 break;
             case R.id.btn_call_other:
-                Toast.makeText(this, "打招呼", Toast.LENGTH_SHORT).show();
+                if (MyApp.getFalg()) {
+
+                    Toast.makeText(this, "打招呼", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "请登录后再试", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btn_fllow:
-                Toast.makeText(this, "关注", Toast.LENGTH_SHORT).show();
+                if (MyApp.getFalg()) {
+
+                    Toast.makeText(this, "关注", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    Toast.makeText(this, "请登录后再试", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case R.id.iv_person_details:
                 Intent intent = new Intent(this, PersonDetailsPicActivity.class);

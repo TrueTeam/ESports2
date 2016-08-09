@@ -2,6 +2,7 @@ package com.example.mypc.esports2.gamelib;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.login.LoginActivity;
 import com.example.mypc.esports2.main.ExchangeActivity;
+import com.example.mypc.esports2.main.InterestedActivity;
 import com.example.mypc.esports2.main.InvitationActivity;
 import com.example.mypc.esports2.main.MyMatchActivity;
 import com.example.mypc.esports2.main.MyPartActivity;
@@ -26,7 +28,7 @@ import com.example.mypc.esports2.main.MyReplyActivity;
 import com.example.mypc.esports2.main.MyTeamActivity;
 import com.example.mypc.esports2.main.SettingActivity;
 import com.example.mypc.esports2.main.TuCaoActivity;
-import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
+import com.example.mypc.esports2.main.persondetails.EditingInterfaceActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,6 +80,8 @@ public class MyGamesFragment extends Fragment {
     public MyGamesFragment() {
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -109,8 +113,7 @@ public class MyGamesFragment extends Fragment {
                 break;
             case R.id.head_image_pic:
                 if (MyApp.getFalg()){
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getContext(), PersonDetailsActivity.class));
+                    startActivityForResult(new Intent(getActivity(), EditingInterfaceActivity.class),1);
                 }else{
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
@@ -152,7 +155,7 @@ public class MyGamesFragment extends Fragment {
                 break;
             case R.id.head_tv_mygame:
                 if (MyApp.getFalg()) {
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(), InterestedActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
@@ -192,6 +195,16 @@ public class MyGamesFragment extends Fragment {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -1){
+            Bundle extras = data.getExtras();
+            Bitmap bitmap = extras.getParcelable("photo");
+            headImagePic.setImageBitmap(bitmap);
+            headCircleiv.setImageBitmap(bitmap);
         }
     }
 }

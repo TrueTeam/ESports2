@@ -24,12 +24,10 @@ public class UnLoginFragment extends Fragment {
 
     @BindView(R.id.btn_un_login)
     Button btnUnLogin;
-    private boolean flag;
 
     public UnLoginFragment() {
 
     }
-
 
 
     @Override
@@ -46,4 +44,5 @@ public class UnLoginFragment extends Fragment {
     public void onClick() {
         startActivity(new Intent(getActivity(), LoginActivity.class));
     }
+
 }

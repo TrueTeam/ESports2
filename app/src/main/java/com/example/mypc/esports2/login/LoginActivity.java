@@ -49,7 +49,9 @@ public class LoginActivity extends BaseActivity implements RegisterFragment.onRe
 
     @Override
     public void onRegisterSuccess() {
-        if(MyApp.getFalg()){finish();}
+        if (MyApp.getFalg()) {
+            finish();
+        }
     }
 }
 
