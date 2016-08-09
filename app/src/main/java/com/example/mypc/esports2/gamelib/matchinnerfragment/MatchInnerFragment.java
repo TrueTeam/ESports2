@@ -60,12 +60,14 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
         mPagerAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                String id = mList.get(i).getId();
-                String matchStatus = mList.get(i).getMatchStatus();
-                Intent intent = new Intent(getActivity(), MatchDetailsActivity.class);
-                intent.putExtra("id",id);
-                intent.putExtra("matchStatus",matchStatus);
-                startActivity(intent);
+                    String id = mList.get(i).getId();
+                    String matchStatus = mList.get(i).getMatchStatus();
+                    Intent intent = new Intent(getActivity(), MatchDetailsActivity.class);
+                    intent.putExtra("id",id);
+                    intent.putExtra("matchStatus",matchStatus);
+                    startActivity(intent);
+
+
             }
         });
         return view;

@@ -24,7 +24,6 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     @Override
     public void registerUser(Context context, String username, String password) {
         int i = mode.registerUser(context, username, password);
-//        listener.onGetaddResult(i);
         if (i > 0) {
             view.onRegisterSuccess();
         } else {

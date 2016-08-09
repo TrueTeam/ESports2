@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity {
     public static final int SELECTED_FOUND = 1;
     public static final int SELECTED_NEWS = 2;
     public static final int SELECTED_MESSAGE = 3;
+    public static final int SELECTED_SHOW_MESSAGE = 4;
     private NewsFragment newsFragment;
     private UnLoginFragment unLoginFragment;
     private FragmentManager manager;
@@ -60,7 +61,7 @@ public class MainActivity extends BaseActivity {
         transaction.add(R.id.fl_layout, unLoginFragment);
         transaction.add(R.id.fl_layout, findFragment);
         transaction.add(R.id.fl_layout, loggedFragment);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     public void selectFragment(int position) {
@@ -77,14 +78,14 @@ public class MainActivity extends BaseActivity {
                 transaction.show(newsFragment);
                 break;
             case SELECTED_MESSAGE:
-                if (!MyApp.getFalg()) {
-                    transaction.show(unLoginFragment);
-                } else {
-                    transaction.show(loggedFragment);
-                }
+                transaction.show(unLoginFragment);
                 break;
+            case SELECTED_SHOW_MESSAGE:
+                    transaction.show(loggedFragment);
+                break;
+
         }
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
 
@@ -107,8 +108,31 @@ public class MainActivity extends BaseActivity {
                 selectFragment(SELECTED_NEWS);
                 break;
             case R.id.btn_message:
-                selectFragment(SELECTED_MESSAGE);
+                if (!MyApp.getFalg()) {
+                    selectFragment(SELECTED_MESSAGE);
+                } else {
+                    selectFragment(SELECTED_SHOW_MESSAGE);
+                }
                 break;
+
+        }
+    }
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if (MyApp.getFalg()){
+//            btnGames.setChecked(true);
+//            selectFragment(SELECTED_GAME);
+//        }
+//    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (MyApp.getFalg()){
+            btnGames.setChecked(true);
+            selectFragment(SELECTED_GAME);
         }
     }
 }

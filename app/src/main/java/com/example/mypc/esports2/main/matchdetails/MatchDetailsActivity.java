@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.adapter.GamesDetailsAdapter;
 import com.example.mypc.esports2.base.BaseActivity;
@@ -97,6 +98,7 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                 btnEntered.setBackgroundColor(0xffeeeeee);
                 break;
             case REGISTING_MARK:
+
                 btnEntered.setEnabled(true);
                 btnEntered.setText("立即报名");
                 btnEntered.setTextColor(0xffeeeeee);
@@ -104,8 +106,12 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                 btnEntered.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(MatchDetailsActivity.this, RoleSelectionActivity.class));
-                        Toast.makeText(MatchDetailsActivity.this, "现在可以报名.. 来报名吧", Toast.LENGTH_SHORT).show();
+                        if (!MyApp.getFalg()){
+                            Toast.makeText(MatchDetailsActivity.this,"请您先登录再查看此消息",Toast.LENGTH_SHORT).show();
+                        } else{
+                            startActivity(new Intent(MatchDetailsActivity.this, RoleSelectionActivity.class));
+                            Toast.makeText(MatchDetailsActivity.this, "现在可以报名.. 来报名吧", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 break;
