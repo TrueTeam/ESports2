@@ -1,14 +1,10 @@
 package com.example.mypc.esports2;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.umeng.socialize.PlatformConfig;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by MyPC on 2016/8/7.
