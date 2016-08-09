@@ -1,5 +1,8 @@
 package com.example.mypc.esports2.main;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +30,14 @@ public class TuCaoActivity extends BaseActivity {
     @BindView(R.id.btn_add_team)
     Button btnAddTeam;
 
+    private SharedPreferences sp;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sp = getSharedPreferences("tucao", MODE_PRIVATE);
+
+    }
 
     @OnClick({R.id.on_back_image, R.id.btn_add_team})
     public void onClick(View view) {
@@ -36,10 +46,23 @@ public class TuCaoActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.btn_add_team:
-                Toast.makeText(this,"确认提交",Toast.LENGTH_SHORT).show();
-                break;
+
+                String yijian = tuCaoSpi.getSelectedItem().toString();
+                String trim = etTuCao.getText().toString().trim();
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("title", yijian);
+                editor.putString("context", trim);
+                boolean resule = editor.commit();
+                if (resule) {
+                    Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
+                    etTuCao.setText("");
+                    tuCaoSpi.setSelection(0);
+                    break;
+                }
         }
     }
+
+
 
     @Override
     public int getLayoutID() {

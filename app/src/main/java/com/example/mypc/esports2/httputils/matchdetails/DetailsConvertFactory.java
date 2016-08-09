@@ -72,6 +72,7 @@ public class DetailsConvertFactory extends Converter.Factory {
                JSONObject jsonObject = new JSONObject(result);
                 String id = jsonObject.getString("id");
                 String title = jsonObject.getString("title");
+                String prize = jsonObject.getString("prize");
                 JSONArray sign_lists = jsonObject.getJSONArray("sign_lists");
                 for (int i = 0; i < sign_lists.length(); i++) {
                     JSONObject jsonObject1 = sign_lists.getJSONObject(i);
@@ -91,7 +92,7 @@ public class DetailsConvertFactory extends Converter.Factory {
                 String model = jsonObject.getString("_model");
                 String cover_link = jsonObject.getString("cover_link");
                 matchDetailsBean =
-                        new MatchDetailsBean(id,title,content,game_id,play_id,limit,msList,sign_count,intro,model,cover_link);
+                        new MatchDetailsBean(id,title,prize,content,game_id,play_id,limit,msList,sign_count,intro,model,cover_link);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -1,6 +1,6 @@
 package com.example.mypc.esports2.main.news.newsinner;
 
-import com.example.mypc.esports2.bean.NewsAD;
+import com.example.mypc.esports2.bean.NewsBean;
 import com.example.mypc.esports2.config.NewsUrlConfig;
 
 import java.util.HashMap;
@@ -29,16 +29,16 @@ public class NewsInnerPresenter implements NewsInnerContract.Presenter {
         params.put(NewsUrlConfig.key.CID, id);
         params.put(NewsUrlConfig.key.AD, "1");
 
-        mode.getData(params, new Callback<NewsAD>() {
+        mode.getData(params, new Callback<NewsBean>() {
 
             @Override
-            public void onResponse(Call<NewsAD> call, Response<NewsAD> response) {
-                NewsAD news = response.body();
+            public void onResponse(Call<NewsBean> call, Response<NewsBean> response) {
+                NewsBean news = response.body();
                 view.onSuccess(news);
             }
 
             @Override
-            public void onFailure(Call<NewsAD> call, Throwable t) {
+            public void onFailure(Call<NewsBean> call, Throwable t) {
                 view.onFail("请求失败");
             }
         });

@@ -6,9 +6,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.fragment.UnLoginFragment;
+import com.example.mypc.esports2.fragment.circle.LoggedFragment;
 import com.example.mypc.esports2.fragment.findFragmentt.FindFragment;
 import com.example.mypc.esports2.gamelib.MyGamesFragment;
 import com.example.mypc.esports2.main.news.NewsFragment;
@@ -32,10 +34,12 @@ public class MainActivity extends BaseActivity {
     public static final int SELECTED_FOUND = 1;
     public static final int SELECTED_NEWS = 2;
     public static final int SELECTED_MESSAGE = 3;
+    public static final int SELECTED_SHOW_MESSAGE = 4;
     private NewsFragment newsFragment;
     private UnLoginFragment unLoginFragment;
     private FragmentManager manager;
     private FindFragment findFragment;
+    private LoggedFragment loggedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +51,22 @@ public class MainActivity extends BaseActivity {
     private void initFragment() {
         manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        myGamesFragment = new MyGamesFragment(FLAG);
+        myGamesFragment = new MyGamesFragment();
         newsFragment = new NewsFragment();
         unLoginFragment = new UnLoginFragment();
-        findFragment=new FindFragment();
+        findFragment = new FindFragment();
+        loggedFragment = new LoggedFragment();
         transaction.add(R.id.fl_layout, myGamesFragment);
         transaction.add(R.id.fl_layout, newsFragment);
         transaction.add(R.id.fl_layout, unLoginFragment);
         transaction.add(R.id.fl_layout, findFragment);
-
-        transaction.commit();
+        transaction.add(R.id.fl_layout, loggedFragment);
+        transaction.commitAllowingStateLoss();
     }
 
     public void selectFragment(int position) {
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.hide(myGamesFragment).hide(newsFragment).hide(unLoginFragment).hide(findFragment);
+        transaction.hide(myGamesFragment).hide(newsFragment).hide(unLoginFragment).hide(findFragment).hide(loggedFragment);
         switch (position) {
             case SELECTED_GAME:
                 transaction.show(myGamesFragment);
@@ -75,8 +80,12 @@ public class MainActivity extends BaseActivity {
             case SELECTED_MESSAGE:
                 transaction.show(unLoginFragment);
                 break;
+            case SELECTED_SHOW_MESSAGE:
+                    transaction.show(loggedFragment);
+                break;
+
         }
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
 
@@ -91,7 +100,6 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.btn_games:
                 selectFragment(SELECTED_GAME);
-
                 break;
             case R.id.btn_found:
                 selectFragment(SELECTED_FOUND);
@@ -100,12 +108,31 @@ public class MainActivity extends BaseActivity {
                 selectFragment(SELECTED_NEWS);
                 break;
             case R.id.btn_message:
-                if (FLAG) {
-
-                } else {
+                if (!MyApp.getFalg()) {
                     selectFragment(SELECTED_MESSAGE);
+                } else {
+                    selectFragment(SELECTED_SHOW_MESSAGE);
                 }
                 break;
+
+        }
+    }
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if (MyApp.getFalg()){
+//            btnGames.setChecked(true);
+//            selectFragment(SELECTED_GAME);
+//        }
+//    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (MyApp.getFalg()){
+            btnGames.setChecked(true);
+            selectFragment(SELECTED_GAME);
         }
     }
 }

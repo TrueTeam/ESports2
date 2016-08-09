@@ -1,6 +1,6 @@
 package com.example.mypc.esports2.main.news;
 
-import com.example.mypc.esports2.bean.Artical;
+import com.example.mypc.esports2.bean.ArticalBean;
 
 import java.util.List;
 
@@ -22,15 +22,15 @@ public class NewsPresenter implements NewsContract.Presenter {
     }
     @Override
     public void getData() {
-        mode.getData(new Callback<List<Artical>>() {
+        mode.getData(new Callback<List<ArticalBean>>() {
             @Override
-            public void onResponse(Call<List<Artical>> call, Response<List<Artical>> response) {
-                List<Artical> body = response.body();
+            public void onResponse(Call<List<ArticalBean>> call, Response<List<ArticalBean>> response) {
+                List<ArticalBean> body = response.body();
                 view.onSuccess(body);
             }
 
             @Override
-            public void onFailure(Call<List<Artical>> call, Throwable t) {
+            public void onFailure(Call<List<ArticalBean>> call, Throwable t) {
                 view.onFail("请求失败");
             }
         });

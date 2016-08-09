@@ -26,7 +26,7 @@ public class UnLoginFragment extends Fragment {
     Button btnUnLogin;
 
     public UnLoginFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -36,11 +36,13 @@ public class UnLoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_un_login, container, false);
         ButterKnife.bind(this, view);
+
         return view;
     }
 
     @OnClick(R.id.btn_un_login)
     public void onClick() {
-        startActivity(new Intent(getContext(), LoginActivity.class));
+        startActivity(new Intent(getActivity(), LoginActivity.class));
     }
+
 }

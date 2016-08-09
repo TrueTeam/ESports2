@@ -3,11 +3,13 @@ package com.example.mypc.esports2.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 
@@ -28,10 +30,21 @@ public class SettingActivity extends BaseActivity {
     RelativeLayout clearCache;
     @BindView(R.id.about_us)
     RelativeLayout aboutUs;
+    @BindView(R.id.btn_user_exit)
+    Button btnUsrExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (MyApp.getFalg()){
+            btnUsrExit.setVisibility(View.VISIBLE);
+            btnUsrExit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(SettingActivity.this,"1111111111111",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     @Override

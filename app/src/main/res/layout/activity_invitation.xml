@@ -91,15 +91,16 @@
                 android:textSize="16sp"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="20dp">
 
                 <EditText
                     android:id="@+id/et_invitaion_code"
-                    android:layout_width="240dp"
-                    android:layout_height="60dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:background="#323232"
                     android:gravity="center"
                     android:hint="邀请码"
@@ -111,7 +112,7 @@
                 <Button
                     android:id="@+id/btn_invitation_commit"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="match_parent"
                     android:background="#00BEC3"
                     android:text="保存"
                     android:textColor="#fff"

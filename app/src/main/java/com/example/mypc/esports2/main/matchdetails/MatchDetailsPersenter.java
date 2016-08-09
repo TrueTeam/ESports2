@@ -30,7 +30,6 @@ public class MatchDetailsPersenter implements MatchDetailsContract.Persenter {
             @Override
             public void onResponse(Call<MatchDetailsBean> call, Response<MatchDetailsBean> response) {
                 MatchDetailsBean body = response.body();
-                Log.i("TAG", "onResponse: "+body.toString());
                 mView.onSuccess(body);
             }
 

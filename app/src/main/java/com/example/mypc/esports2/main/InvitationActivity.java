@@ -1,5 +1,7 @@
 package com.example.mypc.esports2.main;
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +35,10 @@ public class InvitationActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.iv_invitation:
-                // TODO: 2016/7/31 获取textview中的内容并复制
+                ClipboardManager clip = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                clip.getText(); // 粘贴
+                clip.setText("622-3333-5555-8888-222"); // 复制
+
 
                 break;
             case R.id.btn_invitation_commit:

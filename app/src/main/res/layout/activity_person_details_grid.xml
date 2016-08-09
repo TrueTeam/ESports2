@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.mypc.esports2.main.persondetails.PersonDetailsGridActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#000"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/on_back_image"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_arrow_left"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="参与人员"
+            android:textColor="#FDD101"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_participation_person"
+        android:padding="10dp"
+        android:text="参与人员(71)"
+        android:background="@color/cardview_light_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy_grid_person_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

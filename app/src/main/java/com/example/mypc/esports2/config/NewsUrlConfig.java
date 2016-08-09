@@ -15,5 +15,6 @@ public class NewsUrlConfig {
         public static final String P = "p";
         public static final String CID = "cid";
         public static final String AD = "ad";
+        public static final String PID = "pid";
     }
 }

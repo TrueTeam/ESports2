@@ -28,6 +28,8 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class MatchInnerFragment extends Fragment implements MatchInnerFragmentContract.View {
+    private static final int TOTAL_COUNTER = 30 ;
+    private static final int PAGE_SIZE = 1;
     private MatchInnerFragmentContract.Model modle;
     private MatchInnerFragmentContract.Persenter persenter;
     private Handler handle = new Handler();
@@ -36,6 +38,7 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
     @BindView(R.id.recy_view_inner)
     RecyclerView recyViewInner;
     public int mPosition;
+    private int mCurrentCounter;
 
     public MatchInnerFragment() {
 
@@ -52,7 +55,7 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
         View view = inflater.inflate(R.layout.fragment_games_inner, container, false);
         ButterKnife.bind(this, view);
         mList = new ArrayList<>();
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyViewInner.setLayoutManager(llm);
         mPagerAdapter = new MatchInnerAdapter(R.layout.inner_recyview_layout, mList);
@@ -60,15 +63,36 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
         mPagerAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                String id = mList.get(i).getId();
-                Intent intent = new Intent(getContext(), MatchDetailsActivity.class);
-                intent.putExtra("id",id);
-                startActivity(intent);
+                    String id = mList.get(i).getId();
+                    String matchStatus = mList.get(i).getMatchStatus();
+                    Intent intent = new Intent(getActivity(), MatchDetailsActivity.class);
+                    intent.putExtra("id",id);
+                    intent.putExtra("matchStatus",matchStatus);
+                    startActivity(intent);
+
+
             }
         });
+        mPagerAdapter.openLoadMore(PAGE_SIZE, true);
+//        mPagerAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+//            @Override
+//            public void onLoadMoreRequested() {
+//                recyViewInner.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (mCurrentCounter >= TOTAL_COUNTER) {
+//                            mPagerAdapter.notifyDataChangedAfterLoadMore(false);
+//                        } else {
+//                            mPagerAdapter.notifyDataChangedAfterLoadMore(mList, true);
+//                            mCurrentCounter = mPagerAdapter.getData().size();
+//                        }
+//                    }
+//
+//                });
+//            }
+//        });
         return view;
     }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -93,7 +117,7 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
 
     @Override
     public void onFild(String erro) {
-        Toast.makeText(getContext(), "网络连接错误", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "网络连接错误", Toast.LENGTH_SHORT).show();
     }
 
 }
