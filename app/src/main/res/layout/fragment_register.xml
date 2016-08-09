@@ -19,6 +19,7 @@
         android:textColorHint="#fff"/>
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/et_register_verification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
         android:textColorHint="#fff"/>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_register_obtain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
