@@ -56,8 +56,9 @@ public class LoginFragment extends Fragment {
     public LoginFragment() {
 
     }
+
     public interface onLoginSuccessListener {
-        void onRegisterSuccess();
+        void onRegisterSuccess(UserBean userBean);
     }
 
     private onLoginSuccessListener listener;
@@ -65,6 +66,7 @@ public class LoginFragment extends Fragment {
     public void setOnflagChangerListener(onLoginSuccessListener listener) {
         this.listener = listener;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,9 +90,11 @@ public class LoginFragment extends Fragment {
                     if (beanList.size() == 0) {
                         etLoginAccont.setError("用户名不存在");
                     } else {
-                        if (password.equals(beanList.get(0).getPassword())) {
+                        UserBean userBean = beanList.get(0);
+                        String mypass = userBean.getPassword();
+                        if (password.equals(mypass)) {
                             MyApp.setFalg(true);
-                            listener.onRegisterSuccess();
+                            listener.onRegisterSuccess(userBean);
                             Toast.makeText(getActivity(), "登陆成功", Toast.LENGTH_SHORT).show();
 
                         } else {
@@ -116,6 +120,7 @@ public class LoginFragment extends Fragment {
 
         }
     }
+
     private UMAuthListener umAuthListener = new UMAuthListener() {
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
@@ -130,7 +135,7 @@ public class LoginFragment extends Fragment {
 
         @Override
         public void onCancel(SHARE_MEDIA platform, int action) {
-            Toast.makeText( getActivity(), "Authorize cancel", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Authorize cancel", Toast.LENGTH_SHORT).show();
         }
     };
 

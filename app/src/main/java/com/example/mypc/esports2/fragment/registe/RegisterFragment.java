@@ -46,7 +46,7 @@ public class RegisterFragment extends Fragment {
     }
 
     public interface onRegisterSuccessListener {
-        void onRegisterSuccess();
+        void onRegisterSuccess(UserBean userBean);
     }
 
     private onRegisterSuccessListener listener;
@@ -87,7 +87,7 @@ public class RegisterFragment extends Fragment {
                         if (add > 0) {
                             MyApp.setFalg(true);
                             Toast.makeText(getActivity(), "注册成功", Toast.LENGTH_SHORT).show();
-                            listener.onRegisterSuccess();
+                            listener.onRegisterSuccess(userBean);
                         } else {
                             Toast.makeText(getActivity(), "注册失败", Toast.LENGTH_SHORT).show();
                         }

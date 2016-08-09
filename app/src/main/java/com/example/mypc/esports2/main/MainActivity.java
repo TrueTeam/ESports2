@@ -1,5 +1,6 @@
 package com.example.mypc.esports2.main;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -44,6 +45,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
+        String username = preferences.getString("username", "");
+        String password = preferences.getString("password", "");
+        if (username.length() > 0) {
+            MyApp.setFalg(true);
+        }
         initFragment();
         selectFragment(SELECTED_GAME);
     }
@@ -81,7 +88,7 @@ public class MainActivity extends BaseActivity {
                 transaction.show(unLoginFragment);
                 break;
             case SELECTED_SHOW_MESSAGE:
-                    transaction.show(loggedFragment);
+                transaction.show(loggedFragment);
                 break;
 
         }
@@ -130,7 +137,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (MyApp.getFalg()){
+        if (MyApp.getFalg()) {
             btnGames.setChecked(true);
             selectFragment(SELECTED_GAME);
         }

@@ -1,5 +1,6 @@
 package com.example.mypc.esports2.login;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.adapter.LoginAdapter;
 import com.example.mypc.esports2.base.BaseActivity;
+import com.example.mypc.esports2.bean.UserBean;
 import com.example.mypc.esports2.fragment.LoginFragment;
 import com.example.mypc.esports2.fragment.registe.RegisterFragment;
 
@@ -17,7 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class LoginActivity extends BaseActivity implements RegisterFragment.onRegisterSuccessListener,LoginFragment.onLoginSuccessListener {
+public class LoginActivity extends BaseActivity implements RegisterFragment.onRegisterSuccessListener, LoginFragment.onLoginSuccessListener {
 
 
     @BindView(R.id.tablayout_login)
@@ -49,7 +51,12 @@ public class LoginActivity extends BaseActivity implements RegisterFragment.onRe
     }
 
     @Override
-    public void onRegisterSuccess() {
+    public void onRegisterSuccess(UserBean userBean) {
+        SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putString("username", userBean.getUsername());
+        edit.putString("password", userBean.getPassword());
+        edit.commit();
         if (MyApp.getFalg()) {
             finish();
         }

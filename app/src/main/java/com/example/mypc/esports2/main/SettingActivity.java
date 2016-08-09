@@ -1,5 +1,7 @@
 package com.example.mypc.esports2.main;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
+import com.example.mypc.esports2.login.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -41,6 +44,15 @@ public class SettingActivity extends BaseActivity {
             btnUsrExit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+                    builder.setTitle("提示").setMessage("您确定要退出当前账号么？");
+                    builder.setNegativeButton("取消",null).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MyApp.setFalg(false);
+                            startActivity(new Intent(SettingActivity.this, LoginActivity.class));
+                        }
+                    }).create().show();
                     Toast.makeText(SettingActivity.this,"1111111111111",Toast.LENGTH_SHORT).show();
                 }
             });

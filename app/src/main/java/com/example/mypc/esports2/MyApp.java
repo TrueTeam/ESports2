@@ -1,20 +1,25 @@
 package com.example.mypc.esports2;
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.umeng.socialize.PlatformConfig;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by MyPC on 2016/8/7.
  */
 public class MyApp extends Application {
-    private static  Boolean mfalg = false;
+    private static Boolean mfalg = false;
+
     @Override
     public void onCreate() {
         super.onCreate();
         PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
         //微信 appid appsecret
-        PlatformConfig.setSinaWeibo("3921700954","04b48b094faeb16683c32669824ebdad");
+        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad");
         //新浪微博 appkey appsecret
         PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
         // QQ和Qzone appid appkey
@@ -30,10 +35,12 @@ public class MyApp extends Application {
         //来往 appid appkey
 
     }
-    public static Boolean getFalg(){
+
+    public static Boolean getFalg() {
         return mfalg;
     }
-    public static void setFalg(Boolean falg){
+
+    public static void setFalg(Boolean falg) {
         mfalg = falg;
     }
 }
