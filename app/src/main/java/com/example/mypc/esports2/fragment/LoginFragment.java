@@ -14,8 +14,14 @@ import com.example.mypc.esports2.R;
 public class LoginFragment extends Fragment {
 
 
+    private boolean flag;
+
     public LoginFragment() {
 
+    }
+
+    public LoginFragment(boolean flag) {
+        this.flag = flag;
     }
 
 

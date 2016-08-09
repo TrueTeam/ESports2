@@ -28,7 +28,7 @@ import com.example.mypc.esports2.main.MyReplyActivity;
 import com.example.mypc.esports2.main.MyTeamActivity;
 import com.example.mypc.esports2.main.SettingActivity;
 import com.example.mypc.esports2.main.TuCaoActivity;
-import com.example.mypc.esports2.main.persondetails.EditingInterfaceActivity;
+import com.example.mypc.esports2.main.persondetails.PersonDetailsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,16 +75,21 @@ public class MyGamesFragment extends Fragment {
     TextView headTvTucao;
     @BindView(R.id.game_draw_layout)
     DrawerLayout gameDrawLayout;
+    private Boolean MFLAG;
     private MatchPagerAdapter adapter;
 
     public MyGamesFragment() {
     }
 
+    public MyGamesFragment(Boolean FLAG) {
+        this.MFLAG = FLAG;
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_my_games, container, false);
         String[] matchFragment = getResources().getStringArray(R.array.match_selcet_fragment);
         bodyViewpager = (ViewPager) view.findViewById(R.id.body_viewpager);
@@ -92,7 +97,6 @@ public class MyGamesFragment extends Fragment {
         adapter = new MatchPagerAdapter(getFragmentManager(), matchFragment);
         bodyViewpager.setAdapter(adapter);
         gameTablayout.setupWithViewPager(bodyViewpager);
-
         ButterKnife.bind(this, view);
         return view;
     }
@@ -109,104 +113,93 @@ public class MyGamesFragment extends Fragment {
                 }
                 break;
             case R.id.head_image_setting:
-                startActivity(new Intent(getActivity(), SettingActivity.class));
+                startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
             case R.id.head_image_pic:
-                if (MyApp.getFalg()){
-                    startActivityForResult(new Intent(getActivity(), EditingInterfaceActivity.class),1);
+                if (MFLAG){
+                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getContext(), PersonDetailsActivity.class));
                 }else{
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.tv_login_text:
-                if (MyApp.getFalg()){
-                    Toast.makeText(getActivity(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                if (MFLAG){
+                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 }else{
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_quest:
-                if (MyApp.getFalg()) {
-                    Toast.makeText(getActivity(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                if (MFLAG) {
+                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_pantaoyuan:
-                if (MyApp.getFalg()) {
-                    Toast.makeText(getActivity(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                if (MFLAG) {
+                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_record:
-                if (MyApp.getFalg()) {
-                    startActivity(new Intent(getActivity(), ExchangeActivity.class));
+                if (MFLAG) {
+                    startActivity(new Intent(getContext(), ExchangeActivity.class));
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_more:
-                if (MyApp.getFalg()) {
-                    startActivity(new Intent(getActivity(), MyPartActivity.class));
+                if (MFLAG) {
+                    startActivity(new Intent(getContext(), MyPartActivity.class));
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_mygame:
-                if (MyApp.getFalg()) {
-                    startActivity(new Intent(getActivity(), InterestedActivity.class));
+                if (MFLAG) {
+                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_war_team:
-                if (MyApp.getFalg()) {
-                    startActivity(new Intent(getActivity(), MyTeamActivity.class));
+                if (MFLAG) {
+                    startActivity(new Intent(getContext(), MyTeamActivity.class));
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_mine_march:
-                if (MyApp.getFalg()) {
-                    startActivity(new Intent(getActivity(), MyMatchActivity.class));
+                if (MFLAG) {
+                    startActivity(new Intent(getContext(), MyMatchActivity.class));
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_replay:
-                if (MyApp.getFalg()) {
-                    startActivity(new Intent(getActivity(), MyReplyActivity.class));
+                if (MFLAG) {
+                    startActivity(new Intent(getContext(), MyReplyActivity.class));
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_yaoqingma:
-                if (MyApp.getFalg()) {
-                    startActivity(new Intent(getActivity(), InvitationActivity.class));
+                if (MFLAG) {
+                    startActivity(new Intent(getContext(), InvitationActivity.class));
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_tucao:
-                if (MyApp.getFalg()) {
-                    startActivity(new Intent(getActivity(), TuCaoActivity.class));
+                if (MFLAG) {
+                    startActivity(new Intent(getContext(), TuCaoActivity.class));
                 } else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
         }
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == -1){
-            Bundle extras = data.getExtras();
-            Bitmap bitmap = extras.getParcelable("photo");
-            headImagePic.setImageBitmap(bitmap);
-            headCircleiv.setImageBitmap(bitmap);
-        }
-    }
-
 }

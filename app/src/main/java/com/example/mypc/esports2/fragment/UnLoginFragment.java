@@ -24,10 +24,12 @@ public class UnLoginFragment extends Fragment {
 
     @BindView(R.id.btn_un_login)
     Button btnUnLogin;
+    private boolean flag;
 
     public UnLoginFragment() {
-        // Required empty public constructor
+
     }
+
 
 
     @Override
@@ -36,6 +38,7 @@ public class UnLoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_un_login, container, false);
         ButterKnife.bind(this, view);
+
         return view;
     }
 

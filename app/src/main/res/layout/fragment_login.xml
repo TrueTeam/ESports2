@@ -8,7 +8,7 @@
     tools:context=".fragment.LoginFragment">
 
     <EditText
-        android:id="@+id/et_register_accont"
+        android:id="@+id/et_login_accont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@mipmap/login_account"
@@ -19,11 +19,11 @@
         android:textColorHint="#fff"/>
 
     <EditText
-        android:id="@+id/et_register_password"
+        android:id="@+id/et_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#fff"
-        android:layout_below="@+id/et_register_accont"
+        android:layout_below="@+id/et_login_accont"
         android:drawableLeft="@mipmap/login_password"
         android:hint="密码"
         android:inputType="textPassword"
@@ -36,7 +36,7 @@
         android:id="@+id/tv_register_find"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/et_register_password"
+        android:layout_alignBaseline="@+id/et_login_password"
         android:layout_alignParentRight="true"
         android:paddingRight="10dp"
         android:text="忘记密码？"
@@ -48,7 +48,7 @@
         android:id="@+id/btn_login_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_register_password"
+        android:layout_below="@+id/et_login_password"
         android:layout_margin="10dp"
         android:background="@drawable/login_background"
         android:text="登陆"

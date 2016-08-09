@@ -5,38 +5,40 @@
     android:layout_height="wrap_content"
     android:background="#203284b4"
     android:padding="10dp"
-    tools:context="com.example.mypc.esports2.fragment.RegisterFragment">
+    tools:context="com.example.mypc.esports2.fragment.registe.RegisterFragment">
 
-    <EditText
+    <android.support.design.widget.TextInputEditText
         android:id="@+id/et_register_accont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@mipmap/login_account"
-        android:hint="手机号"
-        android:textColor="#fff"
         android:drawablePadding="15dp"
+        android:hint="手机号"
+        android:inputType="number"
+        android:textColor="#fff"
         android:textColorHint="#fff"/>
 
     <EditText
         android:id="@+id/et_register_verification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:drawablePadding="15dp"
         android:layout_below="@+id/et_register_accont"
         android:drawableLeft="@mipmap/login_password"
+        android:drawablePadding="15dp"
         android:hint="验证码"
+        android:inputType="number"
+        android:textColor="#fff"
         android:textColorHint="#fff"/>
 
     <EditText
         android:id="@+id/et_register_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:drawablePadding="15dp"
         android:layout_below="@+id/et_register_verification"
         android:drawableLeft="@mipmap/login_password"
+        android:drawablePadding="15dp"
         android:hint="密码"
+        android:textColor="#fff"
         android:textColorHint="#fff"/>
 
     <TextView
@@ -52,7 +54,7 @@
         android:textSize="16sp"/>
 
     <Button
-        android:id="@+id/btn_login_login"
+        android:id="@+id/btn_register_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_register_password"
@@ -63,9 +65,10 @@
 
 
     <CheckBox
+        android:id="@+id/cb_agreement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_login_login"
+        android:layout_below="@+id/btn_register_login"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:checked="true"

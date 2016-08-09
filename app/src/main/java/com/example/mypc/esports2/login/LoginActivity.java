@@ -5,18 +5,19 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
+import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.adapter.LoginAdapter;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.fragment.LoginFragment;
-import com.example.mypc.esports2.fragment.RegisterFragment;
+import com.example.mypc.esports2.fragment.registe.RegisterFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements RegisterFragment.onRegisterSuccessListener {
 
 
     @BindView(R.id.tablayout_login)
@@ -30,13 +31,15 @@ public class LoginActivity extends BaseActivity {
 
         String[] stringArray = getResources().getStringArray(R.array.logins);
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new LoginFragment());
-        fragments.add(new RegisterFragment());
-
+        LoginFragment loginFragment = new LoginFragment();
+        RegisterFragment registerFragment = new RegisterFragment();
+        fragments.add(loginFragment);
+        fragments.add(registerFragment);
         LoginAdapter adapter = new LoginAdapter(getSupportFragmentManager(), fragments);
         adapter.setmArray(stringArray);
         viewpagerLogin.setAdapter(adapter);
         tablayoutLogin.setupWithViewPager(viewpagerLogin);
+        registerFragment.setOnflagChangerListener(this);
     }
 
     @Override
@@ -44,7 +47,9 @@ public class LoginActivity extends BaseActivity {
         return R.layout.activity_login;
     }
 
-
-
+    @Override
+    public void onRegisterSuccess() {
+        if(MyApp.getFalg()){finish();}
+    }
 }
 

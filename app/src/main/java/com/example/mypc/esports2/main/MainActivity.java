@@ -10,6 +10,7 @@ import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.fragment.UnLoginFragment;
+import com.example.mypc.esports2.fragment.circle.LoggedFragment;
 import com.example.mypc.esports2.fragment.findFragmentt.FindFragment;
 import com.example.mypc.esports2.gamelib.MyGamesFragment;
 import com.example.mypc.esports2.main.news.NewsFragment;
@@ -37,6 +38,7 @@ public class MainActivity extends BaseActivity {
     private UnLoginFragment unLoginFragment;
     private FragmentManager manager;
     private FindFragment findFragment;
+    private LoggedFragment loggedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,18 +53,19 @@ public class MainActivity extends BaseActivity {
         myGamesFragment = new MyGamesFragment();
         newsFragment = new NewsFragment();
         unLoginFragment = new UnLoginFragment();
-        findFragment=new FindFragment();
+        findFragment = new FindFragment();
+        loggedFragment = new LoggedFragment();
         transaction.add(R.id.fl_layout, myGamesFragment);
         transaction.add(R.id.fl_layout, newsFragment);
         transaction.add(R.id.fl_layout, unLoginFragment);
         transaction.add(R.id.fl_layout, findFragment);
-
+        transaction.add(R.id.fl_layout, loggedFragment);
         transaction.commit();
     }
 
     public void selectFragment(int position) {
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.hide(myGamesFragment).hide(newsFragment).hide(unLoginFragment).hide(findFragment);
+        transaction.hide(myGamesFragment).hide(newsFragment).hide(unLoginFragment).hide(findFragment).hide(loggedFragment);
         switch (position) {
             case SELECTED_GAME:
                 transaction.show(myGamesFragment);
@@ -74,7 +77,11 @@ public class MainActivity extends BaseActivity {
                 transaction.show(newsFragment);
                 break;
             case SELECTED_MESSAGE:
-                transaction.show(unLoginFragment);
+                if (!MyApp.getFalg()) {
+                    transaction.show(unLoginFragment);
+                } else {
+                    transaction.show(loggedFragment);
+                }
                 break;
         }
         transaction.commit();
@@ -92,7 +99,6 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.btn_games:
                 selectFragment(SELECTED_GAME);
-
                 break;
             case R.id.btn_found:
                 selectFragment(SELECTED_FOUND);
@@ -101,12 +107,7 @@ public class MainActivity extends BaseActivity {
                 selectFragment(SELECTED_NEWS);
                 break;
             case R.id.btn_message:
-                if (MyApp.getFalg()) {
-
-                } else {
-                    selectFragment(SELECTED_MESSAGE);
-
-                }
+                selectFragment(SELECTED_MESSAGE);
                 break;
         }
     }
