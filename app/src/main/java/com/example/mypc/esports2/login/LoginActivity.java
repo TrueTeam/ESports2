@@ -17,7 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class LoginActivity extends BaseActivity implements RegisterFragment.onRegisterSuccessListener {
+public class LoginActivity extends BaseActivity implements RegisterFragment.onRegisterSuccessListener,LoginFragment.onLoginSuccessListener {
 
 
     @BindView(R.id.tablayout_login)
@@ -40,6 +40,7 @@ public class LoginActivity extends BaseActivity implements RegisterFragment.onRe
         viewpagerLogin.setAdapter(adapter);
         tablayoutLogin.setupWithViewPager(viewpagerLogin);
         registerFragment.setOnflagChangerListener(this);
+        loginFragment.setOnflagChangerListener(this);
     }
 
     @Override

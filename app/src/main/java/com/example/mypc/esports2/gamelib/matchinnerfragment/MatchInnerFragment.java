@@ -28,6 +28,8 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class MatchInnerFragment extends Fragment implements MatchInnerFragmentContract.View {
+    private static final int TOTAL_COUNTER = 30 ;
+    private static final int PAGE_SIZE = 1;
     private MatchInnerFragmentContract.Model modle;
     private MatchInnerFragmentContract.Persenter persenter;
     private Handler handle = new Handler();
@@ -36,6 +38,7 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
     @BindView(R.id.recy_view_inner)
     RecyclerView recyViewInner;
     public int mPosition;
+    private int mCurrentCounter;
 
     public MatchInnerFragment() {
 
@@ -70,9 +73,26 @@ public class MatchInnerFragment extends Fragment implements MatchInnerFragmentCo
 
             }
         });
+        mPagerAdapter.openLoadMore(PAGE_SIZE, true);
+//        mPagerAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+//            @Override
+//            public void onLoadMoreRequested() {
+//                recyViewInner.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (mCurrentCounter >= TOTAL_COUNTER) {
+//                            mPagerAdapter.notifyDataChangedAfterLoadMore(false);
+//                        } else {
+//                            mPagerAdapter.notifyDataChangedAfterLoadMore(mList, true);
+//                            mCurrentCounter = mPagerAdapter.getData().size();
+//                        }
+//                    }
+//
+//                });
+//            }
+//        });
         return view;
     }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
