@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.fragment.UnLoginFragment;
@@ -47,7 +48,7 @@ public class MainActivity extends BaseActivity {
     private void initFragment() {
         manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        myGamesFragment = new MyGamesFragment(FLAG);
+        myGamesFragment = new MyGamesFragment();
         newsFragment = new NewsFragment();
         unLoginFragment = new UnLoginFragment();
         findFragment=new FindFragment();
@@ -100,10 +101,11 @@ public class MainActivity extends BaseActivity {
                 selectFragment(SELECTED_NEWS);
                 break;
             case R.id.btn_message:
-                if (FLAG) {
+                if (MyApp.getFalg()) {
 
                 } else {
                     selectFragment(SELECTED_MESSAGE);
+
                 }
                 break;
         }

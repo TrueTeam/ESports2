@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mypc.esports2.R;
@@ -36,6 +37,8 @@ public class EditingInterfaceActivity extends BaseActivity {
     ImageView headImageTwo;
     @BindView(R.id.head_image_three)
     ImageView headImageThree;
+    @BindView(R.id.tv_date_time_picker)
+    TextView tvDateTime;
     private ImageView add_head;
     private Bitmap photo;
 
@@ -225,7 +228,7 @@ public class EditingInterfaceActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.on_back_image, R.id.btn_save_data})
+    @OnClick({R.id.on_back_image, R.id.btn_save_data,R.id.tv_date_time_picker})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.on_back_image:
@@ -239,6 +242,9 @@ public class EditingInterfaceActivity extends BaseActivity {
                 setResult(RESULT_OK, intent);
                 onSaveInstanceState(bundle);
                 finish();
+                break;
+            case R.id.tv_date_time_picker:
+
                 break;
         }
     }

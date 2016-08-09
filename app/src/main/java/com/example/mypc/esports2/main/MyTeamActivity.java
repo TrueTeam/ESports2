@@ -1,5 +1,6 @@
 package com.example.mypc.esports2.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,10 +8,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
+import com.example.mypc.esports2.main.creatteam.CreatTeamActivity;
+import com.example.mypc.esports2.main.joininteam.JoinInTeamActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -49,10 +51,10 @@ public class MyTeamActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.tv_add_team:
-                Toast.makeText(this, "添加战队", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MyTeamActivity.this,JoinInTeamActivity.class));
                 break;
             case R.id.btn_add_team:
-                Toast.makeText(this, "添加队伍", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MyTeamActivity.this, CreatTeamActivity.class));
                 break;
         }
     }

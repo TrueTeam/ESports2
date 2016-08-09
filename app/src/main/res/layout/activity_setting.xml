@@ -134,6 +134,8 @@
 
     </LinearLayout>
     <Button
+        android:visibility="gone"
+        android:id="@+id/btn_user_exit"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

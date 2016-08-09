@@ -8,6 +8,7 @@ import com.umeng.socialize.PlatformConfig;
  * Created by MyPC on 2016/8/7.
  */
 public class MyApp extends Application {
+    private static  Boolean mfalg = false;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -27,5 +28,12 @@ public class MyApp extends Application {
         //Pinterest appid
         PlatformConfig.setLaiwang("laiwangd497e70d4", "d497e70d4c3e4efeab1381476bac4c5e");
         //来往 appid appkey
+
+    }
+    public static Boolean getFalg(){
+        return mfalg;
+    }
+    public static void setFalg(Boolean falg){
+        mfalg = falg;
     }
 }
