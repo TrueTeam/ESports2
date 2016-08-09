@@ -30,19 +30,20 @@
         android:textColor="#fff"
         android:textColorHint="#fff"/>
 
-    <EditText
+    <android.support.design.widget.TextInputEditText
         android:id="@+id/et_register_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_register_verification"
         android:drawableLeft="@mipmap/login_password"
         android:drawablePadding="15dp"
-        android:hint="密码"
+        android:hint="请输入6位以上密码"
+        android:inputType="textPassword"
         android:textColor="#fff"
         android:textColorHint="#fff"/>
 
     <TextView
-        android:id="@+id/tv_register_find"
+        android:id="@+id/tv_register_obtain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/et_register_verification"

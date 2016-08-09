@@ -2,7 +2,6 @@ package com.example.mypc.esports2.gamelib;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,7 +19,6 @@ import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.login.LoginActivity;
 import com.example.mypc.esports2.main.ExchangeActivity;
-import com.example.mypc.esports2.main.InterestedActivity;
 import com.example.mypc.esports2.main.InvitationActivity;
 import com.example.mypc.esports2.main.MyMatchActivity;
 import com.example.mypc.esports2.main.MyPartActivity;
@@ -75,16 +73,10 @@ public class MyGamesFragment extends Fragment {
     TextView headTvTucao;
     @BindView(R.id.game_draw_layout)
     DrawerLayout gameDrawLayout;
-    private Boolean MFLAG;
     private MatchPagerAdapter adapter;
 
     public MyGamesFragment() {
     }
-
-    public MyGamesFragment(Boolean FLAG) {
-        this.MFLAG = FLAG;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,7 +108,7 @@ public class MyGamesFragment extends Fragment {
                 startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
             case R.id.head_image_pic:
-                if (MFLAG){
+                if (MyApp.getFalg()){
                     Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getContext(), PersonDetailsActivity.class));
                 }else{
@@ -124,77 +116,77 @@ public class MyGamesFragment extends Fragment {
                 }
                 break;
             case R.id.tv_login_text:
-                if (MFLAG){
+                if (MyApp.getFalg()){
                     Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 }else{
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_quest:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_pantaoyuan:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_record:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     startActivity(new Intent(getContext(), ExchangeActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_more:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     startActivity(new Intent(getContext(), MyPartActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_mygame:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_war_team:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     startActivity(new Intent(getContext(), MyTeamActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_mine_march:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     startActivity(new Intent(getContext(), MyMatchActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_replay:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     startActivity(new Intent(getContext(), MyReplyActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_yaoqingma:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     startActivity(new Intent(getContext(), InvitationActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_tucao:
-                if (MFLAG) {
+                if (MyApp.getFalg()) {
                     startActivity(new Intent(getContext(), TuCaoActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
