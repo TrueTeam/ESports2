@@ -2,6 +2,8 @@ package com.example.mypc.esports2;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.umeng.socialize.PlatformConfig;
 
@@ -42,5 +44,16 @@ public class MyApp extends Application {
 
     public static void setFalg(Boolean falg) {
         mfalg = falg;
+    }
+    public static boolean isFirstStart(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(
+                "SHARE_APP_TAG", 0);
+        Boolean isFirst = preferences.getBoolean("FIRSTStart", true);
+        if (isFirst) {// 第一次
+            preferences.edit().putBoolean("FIRSTStart", false).apply();
+            return true;
+        } else {
+            return false;
+        }
     }
 }

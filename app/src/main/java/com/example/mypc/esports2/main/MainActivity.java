@@ -1,6 +1,7 @@
 package com.example.mypc.esports2.main;
 
 import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import com.example.mypc.esports2.fragment.UnLoginFragment;
 import com.example.mypc.esports2.fragment.circle.LoggedFragment;
 import com.example.mypc.esports2.fragment.findFragmentt.FindFragment;
 import com.example.mypc.esports2.gamelib.MyGamesFragment;
+import com.example.mypc.esports2.main.linkpage.ShowHomeActivity;
 import com.example.mypc.esports2.main.news.NewsFragment;
 
 import butterknife.BindView;
@@ -45,6 +47,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        if (MyApp.isFirstStart(this)) {
+//            startActivity(new Intent(this, MyIntroActivity.class));
+//        }else{
+            startActivity(new Intent(this, ShowHomeActivity.class));
+//        }
         SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
         String username = preferences.getString("username", "");
         String password = preferences.getString("password", "");
