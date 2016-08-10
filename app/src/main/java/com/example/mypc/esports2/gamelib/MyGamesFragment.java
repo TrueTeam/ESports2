@@ -110,6 +110,7 @@ public class MyGamesFragment extends Fragment {
                 break;
             case R.id.head_image_setting:
                 startActivity(new Intent(getContext(), SettingActivity.class));
+                gameDrawLayout.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.head_image_pic:
                 if (MyApp.getFalg()){
@@ -195,6 +196,8 @@ public class MyGamesFragment extends Fragment {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
+
+
         }
     }
     @Override

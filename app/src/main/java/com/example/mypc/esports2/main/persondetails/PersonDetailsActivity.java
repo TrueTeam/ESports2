@@ -85,8 +85,8 @@ public class PersonDetailsActivity extends BaseActivity implements PersonDetails
             }
             String id = result.getId();
             String sign = result.getSign();
-            Glide.with(this).load(headLink).into(ivPersonDetails);
-            Glide.with(this).load(tag).into(ivTargetOne);
+            Glide.with(this).load(headLink).placeholder(R.mipmap.ic_launcher).into(ivPersonDetails);
+            Glide.with(this).load(tag).placeholder(R.mipmap.ic_launcher).into(ivTargetOne);
             tvPersonName.setText(nickname);
             tvPersonDetailsFllow.setText("关注 : " + followCount);
             tvPersonDetailsFen.setText("粉丝 : " + fansCount);

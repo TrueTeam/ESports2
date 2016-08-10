@@ -53,7 +53,6 @@ public class SettingActivity extends BaseActivity {
                             startActivity(new Intent(SettingActivity.this, LoginActivity.class));
                         }
                     }).create().show();
-                    Toast.makeText(SettingActivity.this,"1111111111111",Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -84,5 +83,11 @@ public class SettingActivity extends BaseActivity {
                 startActivity(new Intent(this,AboutUsActivity.class));
                 break;
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 }
