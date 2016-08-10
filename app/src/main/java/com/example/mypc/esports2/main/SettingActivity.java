@@ -3,6 +3,7 @@ package com.example.mypc.esports2.main;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,25 +36,29 @@ public class SettingActivity extends BaseActivity {
     RelativeLayout aboutUs;
     @BindView(R.id.btn_user_exit)
     Button btnUsrExit;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (MyApp.getFalg()){
+        if (MyApp.getFalg()) {
             btnUsrExit.setVisibility(View.VISIBLE);
+            SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
+            edit = preferences.edit();
             btnUsrExit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
                     builder.setTitle("提示").setMessage("您确定要退出当前账号么？");
-                    builder.setNegativeButton("取消",null).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton("取消", null).setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            edit.clear().commit();
                             MyApp.setFalg(false);
                             startActivity(new Intent(SettingActivity.this, LoginActivity.class));
                         }
                     }).create().show();
-                    Toast.makeText(SettingActivity.this,"1111111111111",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SettingActivity.this, "1111111111111", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -72,17 +77,23 @@ public class SettingActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.change_password:
-                Toast.makeText(this,"修改密码", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "修改密码", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.now_version:
-                Toast.makeText(this,"当前版本", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "当前版本", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.clear_cache:
-                Toast.makeText(this,"清楚缓存", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "清楚缓存", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.about_us:
-                startActivity(new Intent(this,AboutUsActivity.class));
+                startActivity(new Intent(this, AboutUsActivity.class));
                 break;
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 }
