@@ -167,6 +167,7 @@ public class MatchDetailsActivity extends BaseActivity implements MatchDetailsCo
                     tvWebP.setText(Html.fromHtml(prize));
                     Glide.with(MatchDetailsActivity.this)
                             .load(coverLink)
+                            .placeholder(R.mipmap.recyad)
                             .into(ivHeadImage);
 
 

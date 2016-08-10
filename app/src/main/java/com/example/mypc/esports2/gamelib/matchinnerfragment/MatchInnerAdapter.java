@@ -53,6 +53,7 @@ public class MatchInnerAdapter extends BaseQuickAdapter<GamesBean> {
         baseViewHolder.setText(R.id.tv_end_time,endtime);
         Glide.with(baseViewHolder.getConvertView().getContext())
                 .load(gamesBean.getCoverLink())
+                .placeholder(R.mipmap.recyad)
                 .into((ImageView) baseViewHolder.getView(R.id.care_image));
         setMatchStatus(gamesBean.getMatchStatus(), baseViewHolder);
         setMatchNature(gamesBean.getMatchStatus(), baseViewHolder);

@@ -15,7 +15,6 @@ import java.util.List;
  * Created by MyPC on 2016/8/6.
  */
 public class PersonDetailsGridAdapter extends BaseQuickAdapter<MatchDetailsBean.SignListsBean> {
-    private String mCount;
     public PersonDetailsGridAdapter(int layoutResId, List<MatchDetailsBean.SignListsBean> data) {
         super(layoutResId, data);
     }
@@ -29,6 +28,7 @@ public class PersonDetailsGridAdapter extends BaseQuickAdapter<MatchDetailsBean.
         Glide.with(baseViewHolder.convertView.getContext())
                 .load(headLink)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.mipmap.ic_launcher)
                 .into((ImageView) baseViewHolder.convertView.findViewById(R.id.iv_child_person_grid));
     }
 }
