@@ -1,5 +1,6 @@
 package com.example.mypc.esports2.fragment.findFragmentt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import com.example.mypc.esports2.adapter.FindcircleAdapter;
 import com.example.mypc.esports2.adapter.FindpostAdapter;
 import com.example.mypc.esports2.bean.CircleBean;
 import com.example.mypc.esports2.bean.PostBean;
+import com.example.mypc.esports2.fragment.findFragmentt.topicmore.TopicMoreActivity;
 
 import java.util.List;
 
@@ -63,7 +65,9 @@ public class FindfindFragment extends Fragment  implements FindFragmentContract.
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.find_topic_textView:
-                Toast.makeText(getActivity(), "第一个", Toast.LENGTH_SHORT).show();
+                //本期话题更多的跳转
+                Intent intent=new Intent(getActivity(),TopicMoreActivity.class);
+                startActivity(intent);
                 break;
             case R.id.find_circle_textView:
                 Toast.makeText(getActivity(), "第二个", Toast.LENGTH_SHORT).show();

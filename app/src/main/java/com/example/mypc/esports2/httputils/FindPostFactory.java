@@ -37,7 +37,7 @@ public class FindPostFactory extends Converter.Factory {
             List<PostBean> mList = new ArrayList<>();
             try {
                 JSONArray json = new JSONArray(result);
-                Log.i("TAG",result);
+
 //                List<String>tags=new ArrayList<>();
 //
 //                List<String>pic_lists=new ArrayList<>();

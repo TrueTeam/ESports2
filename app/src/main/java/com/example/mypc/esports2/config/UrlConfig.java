@@ -28,4 +28,7 @@ public class UrlConfig {
     public static class PostPath{
         public static final String POST="Circle/postlists";
     }
+    public static class TopicPath{
+        public static final String TOPIC="topic/lists";
+    }
 }
