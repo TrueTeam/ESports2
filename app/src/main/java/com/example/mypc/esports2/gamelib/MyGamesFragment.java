@@ -103,7 +103,7 @@ public class MyGamesFragment extends Fragment {
         if (MyApp.getFalg()) {
             Bundle bundle = getArguments();
             String headimg = bundle.getString("headimg");
-            Log.e("TAG", "headimg.length: " + headimg.length());
+            Log.e("TAG", "headimg.length: " + headimg);
             if (headimg.length() != 0) {
                 Log.e("TAG", "headimg== " + headimg);
                 Glide.with(getActivity()).load(headimg).into(headCircleiv);

@@ -55,12 +55,17 @@ public class MainActivity extends BaseActivity {
         startActivity(new Intent(this, ShowHomeActivity.class));
         SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
         String username = preferences.getString("username", "");
-        String password = preferences.getString("password", "");
+//        String password = preferences.getString("password", "");
         //数据库获取头像信息--路径
         List<UserBean> beanList = UserDao.QueryOne(this, "username", username);
         if (username.length() > 0) {
             MyApp.setFalg(true);
-            headimg = beanList.get(0).getHeadimg();
+            String s = beanList.get(0).getHeadimg();
+            if (s != null) {
+                headimg = s;
+            } else {
+                headimg = "";
+            }
         } else {
             headimg = "";
         }

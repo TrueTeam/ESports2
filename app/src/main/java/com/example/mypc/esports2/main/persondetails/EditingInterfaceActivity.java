@@ -11,7 +11,9 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,9 +49,18 @@ public class EditingInterfaceActivity extends BaseActivity {
     ImageView headImageThree;
     @BindView(R.id.tv_date_time_picker)
     TextView tvDateTime;
+    @BindView(R.id.et_nickname)
+    EditText etNickname;
+    @BindView(R.id.rg_choice_sex)
+    RadioGroup rgChoiceSex;
+    @BindView(R.id.et_describe)
+    EditText etDescribe;
+    @BindView(R.id.et_qq_number)
+    EditText etQqNumber;
     private ImageView add_head;
     private Bitmap photo;
     private TimePickerView pvTime;
+    private UserBean userBean;
 
     @Override
     public int getLayoutID() {
@@ -86,7 +97,7 @@ public class EditingInterfaceActivity extends BaseActivity {
                 String nowtime = getTime(new Date(l));
                 String picktime = getTime(date);
 
-                tvDateTime.setText(String.valueOf(Integer.parseInt(nowtime)-Integer.parseInt(picktime))+"岁");
+                tvDateTime.setText(String.valueOf(Integer.parseInt(nowtime) - Integer.parseInt(picktime)) + "岁");
             }
         });
         //弹出时间选择器
@@ -122,6 +133,12 @@ public class EditingInterfaceActivity extends BaseActivity {
 
             }
         });
+
+        //从本地获取当前登录用户的UID，通过数据库将头像的路径保存在数据库中
+        SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
+        String username = preferences.getString("username", "");
+        List<UserBean> beanList = UserDao.QueryOne(EditingInterfaceActivity.this, "username", username);
+        userBean = beanList.get(0);
     }
 
 
@@ -228,11 +245,7 @@ public class EditingInterfaceActivity extends BaseActivity {
                 headImageOne.setVisibility(View.VISIBLE);
                 headImageOne.setImageBitmap(photo);
             }
-            //从本地获取当前登录用户的UID，通过数据库将头像的路径保存在数据库中
-            SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
-            String username = preferences.getString("username", "");
-            List<UserBean> beanList = UserDao.QueryOne(EditingInterfaceActivity.this, "username", username);
-            UserBean userBean = beanList.get(0);
+
             String uid = userBean.getUid();
 
             //新建文件夹 先选好路径 再调用mkdir函数 现在是根目录下面的Ask文件夹
@@ -283,6 +296,22 @@ public class EditingInterfaceActivity extends BaseActivity {
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 onSaveInstanceState(bundle);
+                //判断个人信息是否已经更改，更改则保存在数据库中
+                String nickname = etNickname.getText().toString().trim();
+                assert nickname != null;
+                UserDao.update(this, userBean, "nickname", nickname);
+                String sign = etDescribe.getText().toString().trim();
+                assert sign != null;
+                UserDao.update(this, userBean, "sign", sign);
+                String qq = etQqNumber.getText().toString().trim();
+                assert qq != null;
+                UserDao.update(this, userBean, "qq", qq);
+                for (int i = 0; i < rgChoiceSex.getChildCount(); i++) {
+                    if (rgChoiceSex.getChildAt(i).isSelected()) {
+                        String sex = String.valueOf(i);
+                        UserDao.update(this, userBean, "sex", sex);
+                    }
+                }
                 finish();
                 break;
             case R.id.tv_date_time_picker:
@@ -290,6 +319,7 @@ public class EditingInterfaceActivity extends BaseActivity {
                 break;
         }
     }
+
     public static String getTime(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy");
         return format.format(date);

@@ -18,6 +18,8 @@ public class UserBean {
     @DatabaseField
     private String password;
     @DatabaseField
+    private String nickname;
+    @DatabaseField
     private String sex;
     @DatabaseField
     private String age;
@@ -35,18 +37,12 @@ public class UserBean {
     public UserBean() {
     }
 
-    public UserBean(int id, String uid, String username, String password, String sex, String age, String sign, String qq, String headimg, String fansuid, String insertuid) {
-        this.id = id;
-        this.uid = uid;
-        this.username = username;
-        this.password = password;
-        this.sex = sex;
-        this.age = age;
-        this.sign = sign;
-        this.qq = qq;
-        this.headimg = headimg;
-        this.fansuid = fansuid;
-        this.insertuid = insertuid;
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public int getId() {
