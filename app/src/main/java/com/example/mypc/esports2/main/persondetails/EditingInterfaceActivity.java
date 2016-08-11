@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.bean.UserBean;
@@ -24,6 +25,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -45,6 +49,7 @@ public class EditingInterfaceActivity extends BaseActivity {
     TextView tvDateTime;
     private ImageView add_head;
     private Bitmap photo;
+    private TimePickerView pvTime;
 
     @Override
     public int getLayoutID() {
@@ -66,14 +71,40 @@ public class EditingInterfaceActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
+        //控制时间范围
+        Calendar calendar = Calendar.getInstance();
+        pvTime.setRange(calendar.get(Calendar.YEAR) - 116, calendar.get(Calendar.YEAR) + 100);//要在setTime 之前才有效果哦
+        pvTime.setTime(new Date());
+        pvTime.setCyclic(false);
+        pvTime.setCancelable(true);
+        pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
 
+            @Override
+            public void onTimeSelect(Date date) {
+                long l = System.currentTimeMillis();
+                String nowtime = getTime(new Date(l));
+                String picktime = getTime(date);
+
+                tvDateTime.setText(String.valueOf(Integer.parseInt(nowtime)-Integer.parseInt(picktime))+"岁");
+            }
+        });
+        //弹出时间选择器
+        tvDateTime.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                pvTime.show();
+            }
+        });
         add_head = (ImageView) findViewById(R.id.add_head_image);
         add_head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditingInterfaceActivity.this);
+                String title = "选择获取图片方式";
                 final String[] items = new String[]{"从本地获取", "从相机获取"};
-                builder.setItems(items, new DialogInterface.OnClickListener() {
+                builder.setTitle(title).setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
@@ -258,6 +289,10 @@ public class EditingInterfaceActivity extends BaseActivity {
 
                 break;
         }
+    }
+    public static String getTime(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy");
+        return format.format(date);
     }
 
 }
