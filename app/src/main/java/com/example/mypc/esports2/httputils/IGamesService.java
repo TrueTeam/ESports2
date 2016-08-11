@@ -5,6 +5,7 @@ import com.example.mypc.esports2.bean.GamesBean;
 import com.example.mypc.esports2.bean.MatchDetailsBean;
 import com.example.mypc.esports2.bean.PersonDetailsBean;
 import com.example.mypc.esports2.bean.PostBean;
+import com.example.mypc.esports2.bean.TopicMoreBean;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,9 @@ public interface IGamesService {
     @GET("Api/{ccc}")
     Call<List<PostBean>> getPost(@Path("ccc")String path
             , @QueryMap()HashMap<String,String> params);
-
+    @GET("api/{ccc}")
+    Call<List<TopicMoreBean>> getTopic(@Path("ccc")String path
+            , @QueryMap()HashMap<String,String> params);
 
     @GET("api/users/{aaa}")
     Call<PersonDetailsBean> getPersonDetailsBean(@Path("aaa")String path

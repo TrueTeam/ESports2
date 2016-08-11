@@ -19,6 +19,7 @@ import com.example.mypc.esports2.bean.UserBean;
 import com.example.mypc.esports2.httputils.register.UserDao;
 
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,10 +80,12 @@ public class RegisterFragment extends Fragment {
             case R.id.btn_register_login:
                 if (accont.getBytes().length == 11 && password.length() >= 6 && btnRegisterLogin.isEnabled()) {
                     List<UserBean> beanList = UserDao.QueryOne(getActivity(), "username", accont);
+                    String uid = getUid();
                     if (beanList.size() == 0) {
                         UserBean userBean = new UserBean();
                         userBean.setUsername(accont);
                         userBean.setPassword(password);
+                        userBean.setUid(uid);
                         int add = UserDao.add(userBean, getActivity());
                         if (add > 0) {
                             MyApp.setFalg(true);
@@ -102,5 +105,17 @@ public class RegisterFragment extends Fragment {
                 }
                 break;
         }
+    }
+
+    private String getUid() {
+        long floor = (long) Math.floor(new Random().nextDouble() * 100000);
+        String random = 1 + String.valueOf(floor);
+        List<UserBean> beanList = UserDao.QueryOne(getActivity(), "uid", random);
+        if (beanList.size() == 0) {
+            return random;
+        } else {
+            getUid();
+        }
+        return null;
     }
 }
