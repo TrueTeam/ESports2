@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -48,9 +47,18 @@ public class EditingInterfaceActivity extends BaseActivity {
     ImageView headImageThree;
     @BindView(R.id.tv_date_time_picker)
     TextView tvDateTime;
+    @BindView(R.id.et_nickname)
+    EditText etNickname;
+    @BindView(R.id.rg_choice_sex)
+    RadioGroup rgChoiceSex;
+    @BindView(R.id.et_describe)
+    EditText etDescribe;
+    @BindView(R.id.et_qq_number)
+    EditText etQqNumber;
     private ImageView add_head;
     private Bitmap photo;
     private TimePickerView pvTime;
+    private UserBean userBean;
 
     @Override
     public int getLayoutID() {
@@ -123,6 +131,12 @@ public class EditingInterfaceActivity extends BaseActivity {
 
             }
         });
+
+        //从本地获取当前登录用户的UID，通过数据库将头像的路径保存在数据库中
+        SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
+        String username = preferences.getString("username", "");
+        List<UserBean> beanList = UserDao.QueryOne(EditingInterfaceActivity.this, "username", username);
+        userBean = beanList.get(0);
     }
 
 
@@ -232,7 +246,6 @@ public class EditingInterfaceActivity extends BaseActivity {
             //从本地获取当前登录用户的UID，通过数据库将头像的路径保存在数据库中
             SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
             String username = preferences.getString("username", "");
-            Log.i("TAG", "setImageToHeadView: "+username);
             List<UserBean> beanList = UserDao.QueryOne(EditingInterfaceActivity.this, "username", username);
             UserBean userBean = beanList.get(0);
             String uid = userBean.getUid();
@@ -242,7 +255,7 @@ public class EditingInterfaceActivity extends BaseActivity {
             nf.mkdir();
             //在根目录下面的ASk文件夹下 创建用户UID + .jpg文件
             File f = new File(Environment.getExternalStorageDirectory() + "/Ask", uid + "head.jpg");
-//            UserDao.update(EditingInterfaceActivity.this, userBean, "headimg", f.getAbsolutePath());
+            UserDao.update(EditingInterfaceActivity.this, userBean, "headimg", f.getAbsolutePath());
 
             FileOutputStream out = null;
             try {//打开输出流 将图片数据填入文件中
@@ -272,7 +285,7 @@ public class EditingInterfaceActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.on_back_image, R.id.btn_save_data})
+    @OnClick({R.id.on_back_image, R.id.btn_save_data, R.id.tv_date_time_picker})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.on_back_image:
@@ -285,6 +298,22 @@ public class EditingInterfaceActivity extends BaseActivity {
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 onSaveInstanceState(bundle);
+                //判断个人信息是否已经更改，更改则保存在数据库中
+                String nickname = etNickname.getText().toString().trim();
+                assert nickname != null;
+                UserDao.update(this, userBean, "nickname", nickname);
+                String sign = etDescribe.getText().toString().trim();
+                assert sign != null;
+                UserDao.update(this, userBean, "sign", sign);
+                String qq = etQqNumber.getText().toString().trim();
+                assert qq != null;
+                UserDao.update(this, userBean, "qq", qq);
+                for (int i = 0; i < rgChoiceSex.getChildCount(); i++) {
+                    if (rgChoiceSex.getChildAt(i).isSelected()) {
+                        String sex = String.valueOf(i);
+                        UserDao.update(this, userBean, "sex", sex);
+                    }
+                }
                 finish();
                 break;
             case R.id.tv_date_time_picker:

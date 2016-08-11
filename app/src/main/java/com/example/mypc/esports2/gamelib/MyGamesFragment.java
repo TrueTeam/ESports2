@@ -2,13 +2,14 @@ package com.example.mypc.esports2.gamelib;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
+import com.example.mypc.esports2.bean.UserBean;
+import com.example.mypc.esports2.httputils.register.UserDao;
 import com.example.mypc.esports2.login.LoginActivity;
 import com.example.mypc.esports2.main.ExchangeActivity;
 import com.example.mypc.esports2.main.InterestedActivity;
@@ -30,6 +34,8 @@ import com.example.mypc.esports2.main.MyTeamActivity;
 import com.example.mypc.esports2.main.SettingActivity;
 import com.example.mypc.esports2.main.TuCaoActivity;
 import com.example.mypc.esports2.main.persondetails.EditingInterfaceActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,12 +102,12 @@ public class MyGamesFragment extends Fragment {
         ButterKnife.bind(this, view);
         if (MyApp.getFalg()) {
             Bundle bundle = getArguments();
-
-            if (bundle.getString("headimg").length() > 0) {
-                headImagePic.setImageBitmap(BitmapFactory.decodeFile(bundle.getString("headimg")));
-                headCircleiv.setImageBitmap(BitmapFactory.decodeFile(bundle.getString("headimg")));
-            }else{
-                headCircleiv.setImageResource(R.mipmap.moren_header);
+            String headimg = bundle.getString("headimg");
+            Log.e("TAG", "headimg.length: " + headimg);
+            if (headimg.length() != 0) {
+                Log.e("TAG", "headimg== " + headimg);
+                Glide.with(getActivity()).load(headimg).into(headCircleiv);
+                Glide.with(getActivity()).load(headimg).into(headImagePic);
             }
         } else {
             headCircleiv.setImageResource(R.mipmap.moren_header);
