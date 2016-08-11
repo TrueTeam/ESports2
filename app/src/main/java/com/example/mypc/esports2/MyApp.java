@@ -11,6 +11,7 @@ import com.umeng.socialize.PlatformConfig;
  */
 public class MyApp extends Application {
     private static Boolean mfalg = false;
+    private static String uid = null;
 
     @Override
     public void onCreate() {
@@ -41,6 +42,7 @@ public class MyApp extends Application {
     public static void setFalg(Boolean falg) {
         mfalg = falg;
     }
+
     public static boolean isFirstStart(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(
                 "SHARE_APP_TAG", 0);
@@ -52,4 +54,14 @@ public class MyApp extends Application {
             return false;
         }
     }
+
+    public static String getUid() {
+
+        return uid;
+    }
+
+    public static void setUid(String mUid) {
+        uid = mUid;
+    }
+
 }

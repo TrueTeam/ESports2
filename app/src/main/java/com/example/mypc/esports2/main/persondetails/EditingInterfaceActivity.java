@@ -258,7 +258,7 @@ public class EditingInterfaceActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.on_back_image, R.id.btn_save_data, R.id.tv_date_time_picker})
+    @OnClick({R.id.on_back_image, R.id.btn_save_data})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.on_back_image:

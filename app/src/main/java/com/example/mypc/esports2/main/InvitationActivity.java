@@ -2,12 +2,15 @@ package com.example.mypc.esports2.main;
 
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 
@@ -37,7 +40,7 @@ public class InvitationActivity extends BaseActivity {
             case R.id.iv_invitation:
                 ClipboardManager clip = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 clip.getText(); // 粘贴
-                clip.setText("622-3333-5555-8888-222"); // 复制
+                clip.setText(MyApp.getUid()); // 复制
 
 
                 break;
@@ -52,5 +55,9 @@ public class InvitationActivity extends BaseActivity {
         return R.layout.activity_invitation;
     }
 
-
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        tvInvitationCode.setText(MyApp.getUid());
+    }
 }

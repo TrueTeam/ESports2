@@ -80,7 +80,8 @@ public class RegisterFragment extends Fragment {
             case R.id.btn_register_login:
                 if (accont.getBytes().length == 11 && password.length() >= 6 && btnRegisterLogin.isEnabled()) {
                     List<UserBean> beanList = UserDao.QueryOne(getActivity(), "username", accont);
-                    String uid = getUid();
+                    String uid = randomUid();
+                    MyApp.setUid(uid);
                     if (beanList.size() == 0) {
                         UserBean userBean = new UserBean();
                         userBean.setUsername(accont);
@@ -107,14 +108,14 @@ public class RegisterFragment extends Fragment {
         }
     }
 
-    private String getUid() {
+    private String randomUid() {
         long floor = (long) Math.floor(new Random().nextDouble() * 100000);
         String random = 1 + String.valueOf(floor);
         List<UserBean> beanList = UserDao.QueryOne(getActivity(), "uid", random);
         if (beanList.size() == 0) {
             return random;
         } else {
-            getUid();
+            randomUid();
         }
         return null;
     }
