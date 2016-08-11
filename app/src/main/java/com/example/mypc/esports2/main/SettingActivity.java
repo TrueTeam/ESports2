@@ -12,10 +12,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
 import com.example.mypc.esports2.login.LoginActivity;
+import com.example.mypc.esports2.main.persondetails.UpDatePasswordAcitvity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,6 +38,8 @@ public class SettingActivity extends BaseActivity {
     RelativeLayout aboutUs;
     @BindView(R.id.btn_user_exit)
     Button btnUsrExit;
+    @BindView(R.id.tv_catch)
+    TextView tvCatch;
     private SharedPreferences.Editor edit;
 
     @Override
@@ -43,6 +47,7 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         if (MyApp.getFalg()){
             btnUsrExit.setVisibility(View.VISIBLE);
+//            tvCatch.setText();
             SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
             edit = preferences.edit();
             btnUsrExit.setOnClickListener(new View.OnClickListener() {
@@ -76,13 +81,24 @@ public class SettingActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.change_password:
-                Toast.makeText(this,"修改密码", Toast.LENGTH_SHORT).show();
+                if (MyApp.getFalg()){
+                    startActivity(new Intent(this, UpDatePasswordAcitvity.class));
+                }else{
+                    Toast.makeText(this,"请您登陆",Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.now_version:
                 Toast.makeText(this,"当前版本", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.clear_cache:
-                Toast.makeText(this,"清楚缓存", Toast.LENGTH_SHORT).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Glide.get(SettingActivity.this).clearDiskCache();
+                    }
+                }).start();
+
+
                 break;
             case R.id.about_us:
                 startActivity(new Intent(this,AboutUsActivity.class));

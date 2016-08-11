@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -231,6 +232,7 @@ public class EditingInterfaceActivity extends BaseActivity {
             //从本地获取当前登录用户的UID，通过数据库将头像的路径保存在数据库中
             SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
             String username = preferences.getString("username", "");
+            Log.i("TAG", "setImageToHeadView: "+username);
             List<UserBean> beanList = UserDao.QueryOne(EditingInterfaceActivity.this, "username", username);
             UserBean userBean = beanList.get(0);
             String uid = userBean.getUid();
@@ -240,7 +242,7 @@ public class EditingInterfaceActivity extends BaseActivity {
             nf.mkdir();
             //在根目录下面的ASk文件夹下 创建用户UID + .jpg文件
             File f = new File(Environment.getExternalStorageDirectory() + "/Ask", uid + "head.jpg");
-            UserDao.update(EditingInterfaceActivity.this, userBean, "headimg", f.getAbsolutePath());
+//            UserDao.update(EditingInterfaceActivity.this, userBean, "headimg", f.getAbsolutePath());
 
             FileOutputStream out = null;
             try {//打开输出流 将图片数据填入文件中

@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.bean.GamesBean;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -51,12 +52,13 @@ public class MatchInnerAdapter extends BaseQuickAdapter<GamesBean> {
         baseViewHolder.setText(R.id.tv_match_start_time,starttime);
         String endtime = getDate(gamesBean.getEndTime());
         baseViewHolder.setText(R.id.tv_end_time,endtime);
-        Glide.with(baseViewHolder.getConvertView().getContext())
-                .load(gamesBean.getCoverLink())
-                .placeholder(R.mipmap.recyad)
-                .into((ImageView) baseViewHolder.getView(R.id.care_image));
-        setMatchStatus(gamesBean.getMatchStatus(), baseViewHolder);
-        setMatchNature(gamesBean.getMatchStatus(), baseViewHolder);
+        File photoCacheDir = Glide.getPhotoCacheDir(baseViewHolder.convertView.getContext());
+    Glide.with(baseViewHolder.getConvertView().getContext())
+            .load(gamesBean.getCoverLink())
+//                .placeholder(R.mipmap.recyad)
+            .into((ImageView) baseViewHolder.getView(R.id.care_image));
+    setMatchStatus(gamesBean.getMatchStatus(), baseViewHolder);
+    setMatchNature(gamesBean.getMatchStatus(), baseViewHolder);
 
     }
 
