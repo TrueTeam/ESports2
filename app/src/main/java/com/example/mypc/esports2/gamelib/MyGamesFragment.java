@@ -2,12 +2,14 @@ package com.example.mypc.esports2.gamelib;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
+import com.example.mypc.esports2.bean.UserBean;
+import com.example.mypc.esports2.httputils.register.UserDao;
 import com.example.mypc.esports2.login.LoginActivity;
 import com.example.mypc.esports2.main.ExchangeActivity;
 import com.example.mypc.esports2.main.InterestedActivity;
@@ -29,6 +34,8 @@ import com.example.mypc.esports2.main.MyTeamActivity;
 import com.example.mypc.esports2.main.SettingActivity;
 import com.example.mypc.esports2.main.TuCaoActivity;
 import com.example.mypc.esports2.main.persondetails.EditingInterfaceActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,7 +88,6 @@ public class MyGamesFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,6 +100,18 @@ public class MyGamesFragment extends Fragment {
         bodyViewpager.setAdapter(adapter);
         gameTablayout.setupWithViewPager(bodyViewpager);
         ButterKnife.bind(this, view);
+        if (MyApp.getFalg()) {
+            Bundle bundle = getArguments();
+            String headimg = bundle.getString("headimg");
+            Log.e("TAG", "headimg.length: " + headimg.length());
+            if (headimg.length() != 0) {
+                Log.e("TAG", "headimg== " + headimg);
+                Glide.with(getActivity()).load(headimg).into(headCircleiv);
+                Glide.with(getActivity()).load(headimg).into(headImagePic);
+            }
+        } else {
+            headCircleiv.setImageResource(R.mipmap.moren_header);
+        }
         return view;
     }
 
@@ -102,9 +120,9 @@ public class MyGamesFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.head_circleiv:
-                if (gameDrawLayout.isDrawerOpen(Gravity.LEFT)){
+                if (gameDrawLayout.isDrawerOpen(Gravity.LEFT)) {
                     gameDrawLayout.closeDrawer(Gravity.LEFT);
-                }else{
+                } else {
                     gameDrawLayout.openDrawer(Gravity.LEFT);
                 }
                 break;
@@ -113,29 +131,29 @@ public class MyGamesFragment extends Fragment {
                 gameDrawLayout.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.head_image_pic:
-                if (MyApp.getFalg()){
-                    startActivityForResult(new Intent(getActivity(), EditingInterfaceActivity.class),1);
-                }else{
+                if (MyApp.getFalg()) {
+                    startActivityForResult(new Intent(getActivity(), EditingInterfaceActivity.class), 1);
+                } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.tv_login_text:
-                if (MyApp.getFalg()){
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
-                }else{
+                if (MyApp.getFalg()) {
+                    Toast.makeText(getContext(), "功能暂时未实现", Toast.LENGTH_SHORT).show();
+                } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_quest:
                 if (MyApp.getFalg()) {
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "功能暂时未实现", Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.head_tv_pantaoyuan:
                 if (MyApp.getFalg()) {
-                    Toast.makeText(getContext(),"功能暂时未实现",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "功能暂时未实现", Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
@@ -200,10 +218,11 @@ public class MyGamesFragment extends Fragment {
 
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == -1){
+        if (resultCode == -1) {
             Bundle extras = data.getExtras();
             Bitmap bitmap = extras.getParcelable("photo");
             headImagePic.setImageBitmap(bitmap);
