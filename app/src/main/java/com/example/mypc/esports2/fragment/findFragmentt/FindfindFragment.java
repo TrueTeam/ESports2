@@ -16,6 +16,7 @@ import com.example.mypc.esports2.adapter.FindcircleAdapter;
 import com.example.mypc.esports2.adapter.FindpostAdapter;
 import com.example.mypc.esports2.bean.CircleBean;
 import com.example.mypc.esports2.bean.PostBean;
+import com.example.mypc.esports2.fragment.findFragmentt.circlemore.HotMoreActivity;
 import com.example.mypc.esports2.fragment.findFragmentt.topicmore.TopicMoreActivity;
 
 import java.util.List;
@@ -70,10 +71,12 @@ public class FindfindFragment extends Fragment  implements FindFragmentContract.
                 startActivity(intent);
                 break;
             case R.id.find_circle_textView:
-                Toast.makeText(getActivity(), "第二个", Toast.LENGTH_SHORT).show();
+                Intent intent1=new Intent(getActivity(),HotMoreActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.find_post_textView:
-                Toast.makeText(getActivity(), "第三个", Toast.LENGTH_SHORT).show();
+                Intent intent2=new Intent(getActivity(),HotMoreActivity.class);
+                startActivity(intent2);
                 break;
         }
     }
