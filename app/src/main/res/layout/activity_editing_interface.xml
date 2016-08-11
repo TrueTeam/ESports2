@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.mypc.esports2.main.persondetails.EditingInterfaceActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -15,9 +16,9 @@
             android:id="@+id/on_back_image"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:scaleType="center"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_arrow_left"/>
+            android:scaleType="center"
+            android:src="@mipmap/icon_arrow_left" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,167 +27,191 @@
             android:layout_marginTop="5dp"
             android:text="编辑资料"
             android:textColor="#FDD101"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
     </RelativeLayout>
+
     <LinearLayout
-        android:padding="20dp"
-        android:background="#000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="#000"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
         <ImageView
-            android:padding="5dp"
             android:id="@+id/head_image_one"
-            android:visibility="gone"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
-        <ImageView
+            android:layout_height="100dp"
             android:padding="5dp"
+            android:visibility="gone" />
+
+        <ImageView
             android:id="@+id/head_image_two"
-            android:visibility="gone"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
-        <ImageView
+            android:layout_height="100dp"
             android:padding="5dp"
+            android:visibility="gone" />
+
+        <ImageView
             android:id="@+id/head_image_three"
-            android:visibility="gone"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
-        <ImageView android:padding="5dp"
+            android:layout_height="100dp"
+            android:padding="5dp"
+            android:visibility="gone" />
+
+        <ImageView
             android:id="@+id/add_head_image"
-            android:src="@mipmap/icon_add_icon"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:padding="5dp"
+            android:src="@mipmap/icon_add_icon" />
     </LinearLayout>
+
     <TextView
-        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#000"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="点击头像可以设置为头像或删除"
         android:gravity="center"
-        android:textColor="@color/cardview_light_background"/>
+        android:padding="10dp"
+        android:text="点击头像可以设置为头像或删除"
+        android:textColor="@color/cardview_light_background" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:background="@color/cardview_light_background">
+        android:padding="10dp">
+
         <TextView
-            android:text="昵称"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_marginLeft="25dp"
-            android:text="123123"
+            android:layout_height="wrap_content"
+            android:text="昵称" />
+
+        <EditText
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            android:background="@null"
+            android:textSize="14sp"
+            android:text=" " />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:background="@color/cardview_light_background">
+        android:padding="10dp">
+
         <TextView
-            android:text="性别"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
+            android:layout_height="wrap_content"
+            android:text="性别" />
+        <RadioGroup
             android:layout_marginLeft="25dp"
-            android:text="男"
-            android:layout_width="70dp"
-            android:layout_height="40dp" />
-        <Button
-            android:layout_marginLeft="25dp"
-            android:text="女"
-            android:layout_width="70dp"
-            android:layout_height="40dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <RadioButton
+                android:button="@null"
+                android:layout_width="60dp"
+                android:gravity="center"
+                android:background="@drawable/btn_sex_change"
+                android:layout_height="wrap_content"
+                android:text="男" />
+
+            <RadioButton
+                android:layout_marginLeft="20dp"
+                android:layout_width="60dp"
+                android:gravity="center"
+                android:background="@drawable/btn_sex_change"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="女"/>
+        </RadioGroup>
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:background="@color/cardview_light_background">
+        android:padding="10dp">
+
         <TextView
-            android:text="年龄"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="年龄" />
+
         <TextView
             android:id="@+id/tv_date_time_picker"
-            android:layout_marginLeft="25dp"
-            android:text="一个日历"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            android:text=" " />
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:background="@color/cardview_light_background">
+        android:padding="10dp">
+
         <TextView
-            android:text="昵称"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_marginLeft="25dp"
-            android:text="123123"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:background="@color/cardview_light_background">
-        <TextView
-            android:text="签名"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="签名" />
+
         <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
+            android:layout_weight="1"
+            android:background="@null"
             android:hint="输入签名"
-            android:textSize="14sp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:layout_height="wrap_content" />
+            android:textSize="14sp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:background="@color/cardview_light_background">
+        android:padding="10dp">
+
         <TextView
-            android:text="QQ"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="QQ" />
+
         <EditText
-            android:layout_marginLeft="35dp"
-            android:hint="输入QQ号(兑换奖励用)"
-            android:textSize="14sp"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
             android:layout_weight="1"
             android:background="@null"
-            android:layout_height="wrap_content" />
+            android:hint="输入QQ号(兑换奖励用)"
+            android:textSize="14sp" />
     </LinearLayout>
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-      <Button
-          android:id="@+id/btn_save_data"
-          android:text="保存"
-          android:textColor="@color/cardview_light_background"
-          android:background="@drawable/add_role_background"
-          android:layout_alignParentBottom="true"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content" />
-  </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_save_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/add_role_background"
+            android:text="保存"
+            android:textColor="@color/cardview_light_background" />
+    </RelativeLayout>
+
 </LinearLayout>

@@ -28,7 +28,6 @@ public class PersonDetailsGridAdapter extends BaseQuickAdapter<MatchDetailsBean.
         Glide.with(baseViewHolder.convertView.getContext())
                 .load(headLink)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.mipmap.ic_launcher)
                 .into((ImageView) baseViewHolder.convertView.findViewById(R.id.iv_child_person_grid));
     }
 }
