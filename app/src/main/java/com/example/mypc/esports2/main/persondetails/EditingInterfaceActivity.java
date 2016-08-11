@@ -2,6 +2,7 @@ package com.example.mypc.esports2.main.persondetails;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,11 +17,14 @@ import android.widget.Toast;
 
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
+import com.example.mypc.esports2.bean.UserBean;
+import com.example.mypc.esports2.httputils.register.UserDao;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -183,22 +187,29 @@ public class EditingInterfaceActivity extends BaseActivity {
         Bundle extras = intent.getExtras();
         if (extras != null) {
             photo = extras.getParcelable("data");
-            if (headImageOne.getVisibility() ==View.VISIBLE){
+            if (headImageOne.getVisibility() == View.VISIBLE) {
                 headImageTwo.setVisibility(View.VISIBLE);
                 headImageTwo.setImageBitmap(photo);
-            }else if (headImageOne.getVisibility() ==View.VISIBLE && headImageTwo.getVisibility() == View.VISIBLE){
+            } else if (headImageOne.getVisibility() == View.VISIBLE && headImageTwo.getVisibility() == View.VISIBLE) {
                 headImageThree.setVisibility(View.VISIBLE);
                 headImageThree.setImageBitmap(photo);
-            }else {
+            } else {
                 headImageOne.setVisibility(View.VISIBLE);
                 headImageOne.setImageBitmap(photo);
             }
+            //从本地获取当前登录用户的UID，通过数据库将头像的路径保存在数据库中
+            SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
+            String username = preferences.getString("username", "");
+            List<UserBean> beanList = UserDao.QueryOne(EditingInterfaceActivity.this, "username", username);
+            UserBean userBean = beanList.get(0);
+            String uid = userBean.getUid();
 
             //新建文件夹 先选好路径 再调用mkdir函数 现在是根目录下面的Ask文件夹
             File nf = new File(Environment.getExternalStorageDirectory() + "/Ask");
             nf.mkdir();
-            //在根目录下面的ASk文件夹下 创建okkk.jpg文件
-            File f = new File(Environment.getExternalStorageDirectory() + "/Ask", "okkk.jpg");
+            //在根目录下面的ASk文件夹下 创建用户UID + .jpg文件
+            File f = new File(Environment.getExternalStorageDirectory() + "/Ask", uid + "head.jpg");
+            UserDao.update(EditingInterfaceActivity.this, userBean, "headimg", f.getAbsolutePath());
 
             FileOutputStream out = null;
             try {//打开输出流 将图片数据填入文件中
@@ -228,7 +239,7 @@ public class EditingInterfaceActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.on_back_image, R.id.btn_save_data,R.id.tv_date_time_picker})
+    @OnClick({R.id.on_back_image, R.id.btn_save_data, R.id.tv_date_time_picker})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.on_back_image:
