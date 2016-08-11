@@ -37,6 +37,7 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-android:5.0'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.github.paolorotolo:appintro:4.0.0'
+    compile 'com.loopeer.android.thirdparty.pulltorefresh:Android-PullToRefresh:2.1.1'
 }
 
 

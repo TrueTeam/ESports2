@@ -1,10 +1,12 @@
 package com.example.mypc.esports2.httputils;
 
 import com.example.mypc.esports2.bean.CircleBean;
+import com.example.mypc.esports2.bean.CircleHotBean;
 import com.example.mypc.esports2.bean.GamesBean;
 import com.example.mypc.esports2.bean.MatchDetailsBean;
 import com.example.mypc.esports2.bean.PersonDetailsBean;
 import com.example.mypc.esports2.bean.PostBean;
+import com.example.mypc.esports2.bean.PostHotBean;
 import com.example.mypc.esports2.bean.TopicMoreBean;
 
 import java.util.HashMap;
@@ -42,5 +44,11 @@ public interface IGamesService {
 
     @GET("api/users/{aaa}")
     Call<PersonDetailsBean> getPersonDetailsBean(@Path("aaa")String path
+            , @QueryMap()HashMap<String,String> params);
+    @GET("Api/{ccc}")
+    Call<List<CircleHotBean>> getCircleHot(@Path("ccc")String path
+            , @QueryMap()HashMap<String,String> params);
+    @GET("Api/{ccc}")
+    Call<List<PostHotBean>> getPostHot(@Path("ccc")String path
             , @QueryMap()HashMap<String,String> params);
 }

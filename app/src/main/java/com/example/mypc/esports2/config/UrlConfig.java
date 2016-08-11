@@ -31,4 +31,10 @@ public class UrlConfig {
     public static class TopicPath{
         public static final String TOPIC="topic/lists";
     }
+    public static class CircleHotPath{
+        public static final String CIRCLEHOT="Circle/getalllists";
+    }
+    public static class PostHotPath{
+        public static final String POSTHOT="Circle/postlists";
+    }
 }

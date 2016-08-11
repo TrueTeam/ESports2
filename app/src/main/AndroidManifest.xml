@@ -106,7 +106,8 @@
         <activity android:name=".main.joininteam.JoinInTeamActivity" />
         <activity android:name=".main.linkpage.MyIntroActivity" />
         <activity android:name=".main.linkpage.ShowHomeActivity" />
-        <activity android:name=".fragment.findFragmentt.topicmore.TopicMoreActivity"></activity>
+        <activity android:name=".fragment.findFragmentt.topicmore.TopicMoreActivity" />
+        <activity android:name=".fragment.findFragmentt.circlemore.HotMoreActivity"></activity>
     </application>
 
 </manifest>
