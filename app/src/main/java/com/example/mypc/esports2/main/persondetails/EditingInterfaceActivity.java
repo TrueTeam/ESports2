@@ -2,6 +2,7 @@ package com.example.mypc.esports2.main.persondetails;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,17 +11,26 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
+import com.example.mypc.esports2.bean.UserBean;
+import com.example.mypc.esports2.httputils.register.UserDao;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,8 +49,18 @@ public class EditingInterfaceActivity extends BaseActivity {
     ImageView headImageThree;
     @BindView(R.id.tv_date_time_picker)
     TextView tvDateTime;
+    @BindView(R.id.et_nickname)
+    EditText etNickname;
+    @BindView(R.id.rg_choice_sex)
+    RadioGroup rgChoiceSex;
+    @BindView(R.id.et_describe)
+    EditText etDescribe;
+    @BindView(R.id.et_qq_number)
+    EditText etQqNumber;
     private ImageView add_head;
     private Bitmap photo;
+    private TimePickerView pvTime;
+    private UserBean userBean;
 
     @Override
     public int getLayoutID() {
@@ -62,14 +82,40 @@ public class EditingInterfaceActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
+        //控制时间范围
+        Calendar calendar = Calendar.getInstance();
+        pvTime.setRange(calendar.get(Calendar.YEAR) - 116, calendar.get(Calendar.YEAR) + 100);//要在setTime 之前才有效果哦
+        pvTime.setTime(new Date());
+        pvTime.setCyclic(false);
+        pvTime.setCancelable(true);
+        pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
 
+            @Override
+            public void onTimeSelect(Date date) {
+                long l = System.currentTimeMillis();
+                String nowtime = getTime(new Date(l));
+                String picktime = getTime(date);
+
+                tvDateTime.setText(String.valueOf(Integer.parseInt(nowtime) - Integer.parseInt(picktime)) + "岁");
+            }
+        });
+        //弹出时间选择器
+        tvDateTime.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                pvTime.show();
+            }
+        });
         add_head = (ImageView) findViewById(R.id.add_head_image);
         add_head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditingInterfaceActivity.this);
+                String title = "选择获取图片方式";
                 final String[] items = new String[]{"从本地获取", "从相机获取"};
-                builder.setItems(items, new DialogInterface.OnClickListener() {
+                builder.setTitle(title).setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
@@ -87,6 +133,12 @@ public class EditingInterfaceActivity extends BaseActivity {
 
             }
         });
+
+        //从本地获取当前登录用户的UID，通过数据库将头像的路径保存在数据库中
+        SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
+        String username = preferences.getString("username", "");
+        List<UserBean> beanList = UserDao.QueryOne(EditingInterfaceActivity.this, "username", username);
+        userBean = beanList.get(0);
     }
 
 
@@ -183,22 +235,25 @@ public class EditingInterfaceActivity extends BaseActivity {
         Bundle extras = intent.getExtras();
         if (extras != null) {
             photo = extras.getParcelable("data");
-            if (headImageOne.getVisibility() ==View.VISIBLE){
+            if (headImageOne.getVisibility() == View.VISIBLE) {
                 headImageTwo.setVisibility(View.VISIBLE);
                 headImageTwo.setImageBitmap(photo);
-            }else if (headImageOne.getVisibility() ==View.VISIBLE && headImageTwo.getVisibility() == View.VISIBLE){
+            } else if (headImageOne.getVisibility() == View.VISIBLE && headImageTwo.getVisibility() == View.VISIBLE) {
                 headImageThree.setVisibility(View.VISIBLE);
                 headImageThree.setImageBitmap(photo);
-            }else {
+            } else {
                 headImageOne.setVisibility(View.VISIBLE);
                 headImageOne.setImageBitmap(photo);
             }
 
+            String uid = userBean.getUid();
+
             //新建文件夹 先选好路径 再调用mkdir函数 现在是根目录下面的Ask文件夹
             File nf = new File(Environment.getExternalStorageDirectory() + "/Ask");
             nf.mkdir();
-            //在根目录下面的ASk文件夹下 创建okkk.jpg文件
-            File f = new File(Environment.getExternalStorageDirectory() + "/Ask", "okkk.jpg");
+            //在根目录下面的ASk文件夹下 创建用户UID + .jpg文件
+            File f = new File(Environment.getExternalStorageDirectory() + "/Ask", uid + "head.jpg");
+            UserDao.update(EditingInterfaceActivity.this, userBean, "headimg", f.getAbsolutePath());
 
             FileOutputStream out = null;
             try {//打开输出流 将图片数据填入文件中
@@ -228,7 +283,7 @@ public class EditingInterfaceActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.on_back_image, R.id.btn_save_data,R.id.tv_date_time_picker})
+    @OnClick({R.id.on_back_image, R.id.btn_save_data, R.id.tv_date_time_picker})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.on_back_image:
@@ -241,12 +296,33 @@ public class EditingInterfaceActivity extends BaseActivity {
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 onSaveInstanceState(bundle);
+                //判断个人信息是否已经更改，更改则保存在数据库中
+                String nickname = etNickname.getText().toString().trim();
+                assert nickname != null;
+                UserDao.update(this, userBean, "nickname", nickname);
+                String sign = etDescribe.getText().toString().trim();
+                assert sign != null;
+                UserDao.update(this, userBean, "sign", sign);
+                String qq = etQqNumber.getText().toString().trim();
+                assert qq != null;
+                UserDao.update(this, userBean, "qq", qq);
+                for (int i = 0; i < rgChoiceSex.getChildCount(); i++) {
+                    if (rgChoiceSex.getChildAt(i).isSelected()) {
+                        String sex = String.valueOf(i);
+                        UserDao.update(this, userBean, "sex", sex);
+                    }
+                }
                 finish();
                 break;
             case R.id.tv_date_time_picker:
 
                 break;
         }
+    }
+
+    public static String getTime(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy");
+        return format.format(date);
     }
 
 }

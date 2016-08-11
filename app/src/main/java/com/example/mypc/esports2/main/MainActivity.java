@@ -11,12 +11,16 @@ import android.widget.RadioButton;
 import com.example.mypc.esports2.MyApp;
 import com.example.mypc.esports2.R;
 import com.example.mypc.esports2.base.BaseActivity;
+import com.example.mypc.esports2.bean.UserBean;
 import com.example.mypc.esports2.fragment.UnLoginFragment;
 import com.example.mypc.esports2.fragment.circle.LoggedFragment;
 import com.example.mypc.esports2.fragment.findFragmentt.FindFragment;
 import com.example.mypc.esports2.gamelib.MyGamesFragment;
+import com.example.mypc.esports2.httputils.register.UserDao;
 import com.example.mypc.esports2.main.linkpage.ShowHomeActivity;
 import com.example.mypc.esports2.main.news.NewsFragment;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,20 +47,27 @@ public class MainActivity extends BaseActivity {
     private FragmentManager manager;
     private FindFragment findFragment;
     private LoggedFragment loggedFragment;
+    private String headimg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (MyApp.isFirstStart(this)) {
-//            startActivity(new Intent(this, MyIntroActivity.class));
-//        }else{
-            startActivity(new Intent(this, ShowHomeActivity.class));
-//        }
+        startActivity(new Intent(this, ShowHomeActivity.class));
         SharedPreferences preferences = getSharedPreferences("info.txt", MODE_PRIVATE);
         String username = preferences.getString("username", "");
-        String password = preferences.getString("password", "");
+//        String password = preferences.getString("password", "");
+        //数据库获取头像信息--路径
+        List<UserBean> beanList = UserDao.QueryOne(this, "username", username);
         if (username.length() > 0) {
             MyApp.setFalg(true);
+            String s = beanList.get(0).getHeadimg();
+            if (s != null) {
+                headimg = s;
+            } else {
+                headimg = "";
+            }
+        } else {
+            headimg = "";
         }
         initFragment();
         selectFragment(SELECTED_GAME);
@@ -70,6 +81,10 @@ public class MainActivity extends BaseActivity {
         unLoginFragment = new UnLoginFragment();
         findFragment = new FindFragment();
         loggedFragment = new LoggedFragment();
+        //将头像信息传递给myGamesFragment
+        Bundle bundle = new Bundle();
+        bundle.putString("headimg", headimg);
+        myGamesFragment.setArguments(bundle);
         transaction.add(R.id.fl_layout, myGamesFragment);
         transaction.add(R.id.fl_layout, newsFragment);
         transaction.add(R.id.fl_layout, unLoginFragment);
